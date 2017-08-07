@@ -1,6 +1,0 @@
-prontera,97,169,4	script	Quadro dos Vladyn	2_BULLETIN_BOARD,{
-	mes "  ";
-	mes " RESIDÊNCIA DOS VLADYN.";
-	mes "<<<<<<<<<<<<<<<<<<<<<<<";
-	close;
-	}

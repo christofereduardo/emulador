@@ -1,6 +1,0 @@
-prontera,101,169,5	script	SALA PRÓ JOGADOR	2_BULLETIN_BOARD,{
-	mes "";
-	mes " SALA PRÓ-JOGADOR.";
-	mes " >>>>>>>>>>>>>>>>>>>>>>";
-	close;
-	}
