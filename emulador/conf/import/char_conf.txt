@@ -1,0 +1,7 @@
+login_ip: 167.114.189.192
+bind_ip: 167.114.189.192
+login_port: 8773
+char_ip: 167.114.189.192
+char_port: 2686
+max_connect_user: 70
+gm_allow_group: -1

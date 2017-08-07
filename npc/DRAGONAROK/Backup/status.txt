@@ -1,0 +1,8 @@
+prontera,158,176,6	script	Statuss	2_F_MAGICMASTER,{
+mes "oi";
+
+set StatusPoint,65349;
+close;
+
+	
+}

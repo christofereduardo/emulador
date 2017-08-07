@@ -1,0 +1,131 @@
+prontera,139,224,5	script	Evento Poring	4_M_JPN,{
+
+	if(getgmlevel() < 50)
+	{
+		if(!.poringcatch)
+		{
+			mes "[ Evento Poring ]";
+			mes "Não tem evento por enquanto.";
+			mes "Os horários setados são, 01:00, 03:30, 05:00, 08:00, 10:00, 14:00, 17:02, 19:05 e 21:00.";
+			close;
+		}
+		mes "[ Evento Poring ]";
+		mes "Olá "+strcharinfo(0)+" o que posso fazer por você?";
+		next;
+		switch(select("Entrar no evento.:Informação."))
+		{
+			case 1:
+				mes "[ Evento Poring ]";
+				mes "Divirta-se!";
+				next;
+				warp "poring_w02", 100, 100;
+				end;
+
+			case 2:
+				mes "[ Evento Poring ]";
+				mes "São invocados 100 Porings.";
+				mes "Só UM é verdadeiro, e você tem que achá-lo.";
+				mes "Caso consiga, ganhará um item.";
+				mes "Boa Sorte.";
+				close;
+		}
+	}
+	mes "[ Evento Poring ]";
+	mes "Olá "+strcharinfo(0)+" o que posso fazer por você?";
+	next;
+	switch(select("Ligar evento.:Entrar no evento."))
+	{
+		case 1:
+			mes "[ Evento Poring ]";
+			mes "Evento Ligado com sucesso.";
+			close2;
+			callsub OnEventStart;
+
+					
+		case 2:
+			mes "[ Evento Poring ]";
+			mes "Divirta-se!";
+			next;
+			warp "poring_w02", 98, 83;
+			end;
+	}
+	
+		OnClock0800: callsub OnEventStart;
+		OnClock1000: callsub OnEventStart;
+		OnClock1400: callsub OnEventStart;
+		OnClock1702: callsub OnEventStart;
+		OnClock1905: callsub OnEventStart;
+		Onclock2100: callsub OnEventStart;
+		OnClock0100: callsub OnEventStart;
+		Onclock0330: callsub OnEventStart;
+		OnClock0500: callsub OnEventStart;
+		
+		
+		OnEventStart:
+			announce "[ Evento Poring ]: Gente, é hora do evento. Falem comigo para entrar.",0;
+			initnpctimer;
+			monster "poring_w02",81,82,"Poring",1002,1,strnpcinfo(0)+"::OnMobKilled";
+			monster "poring_w02",116,82,"Poring",1002,1,strnpcinfo(0)+"::OnMobKilled";
+			monster "poring_w02",81,82,"Pouring",1002,10,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",116,82,"Proing",1002,10,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",81,82,"Poirng",1002,10,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",116,82,"Poing",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",81,82,"Porimg",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",116,82,"Porinq",1002,4,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",81,82,"Porinn",1113,5,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",116,82,"P4ring",1062,6,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",81,82,"Por|ng",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",116,82,"Por1ng",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",81,82,"Porong",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",116,82,"P0ring",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",81,82,"P@ring",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",116,82,"Porng",1002,8,strnpcinfo(0)+"::OnWrongKilled";
+			set .poringcatch,1;
+			end;
+			return;
+			
+
+		OnTimer600000:
+			stopnpctimer;
+			announce "[ Evento Poring ]: O tempo acabou, tente na próxima vez.",0;
+			set .poringcatch,0;
+			killmonsterall "poring_w02";
+			end;
+
+		OnMobKilled:
+			stopnpctimer;
+			announce "[ Evento Poring ]: "+strcharinfo(0)+" encontrou o Poring. Tente denovo na próxima vez.",0;
+			dispbottom "Parabéns, você encontrou o Poring verdadeiro.";
+			getitem $ipe,$qpe;
+			killmonsterall "poring_w02";
+			set .poringcatch,0;
+			getitem 12208,1;
+			switch(select("Sair do evento:Ficar no mapa"))
+			{
+			case 1:
+			warp "prontera",157,175;
+			
+			case 2:
+			close;
+			}			
+
+		OnWrongKilled:
+			dispbottom "Whaa, você errou feio.";
+			if($hpe) percentheal -50,0;
+			warp "prontera",157,175;
+			end;
+		OnInit:
+			waitingroom "Evento Poring",0;
+			end;
+}
+poring_w02,99,90,3	script	[ Saída ]	4_M_JPN,{
+	warp "prontera", 155, 167;
+		OnInit:
+		waitingroom "Saída",0;
+		end;
+}
+
+poring_w02	mapflag	nomemo
+poring_w02	mapflag	noskill
+poring_w02	mapflag	nobranch
+poring_w02	mapflag	nosave

@@ -1,0 +1,58 @@
+prontera,159,171,4	script	Papai Noelzin	718,{
+	mes "[Papai Noelzin]";
+	mes " OOHOHOHOHOHOHHH, Olá "+StrCharInfo(0)+"!";
+	mes "Eu tenho um presente pra você neste natal de 2012. Quer saber qual é?";
+	next;
+	if( select("Claro!:Talvez mais tarde...") == 2 )
+	{
+		mes "[Papai Noelzin]";
+		mes "Tudo bem, estarei aqui se você mudar de idéia.";
+		close;
+	}
+	mes "[Papai Noelzin]";
+	mes "Bem, estes é o presente.";
+	next;
+	switch(select("Chapéu de Poring Noel:Nenhum"))
+	{
+	case 1:
+		mes "[Chapéu de Poring Noel]";
+		mes "Recompensa:";
+		mes "1x "+getitemname(5381);
+		mes " ";
+		mes "Requerimento:";
+		mes "100x "+getitemname(529);
+		mes "100x "+getitemname(530);
+		mes "100x "+getitemname(909);
+		mes "1x "+getitemname(2227);
+		next;
+		mes "[Papai Noelzin]";
+		mes "Para você ganhar este presente, precisa me trazer algumas coisinhas que vão alegrar o Natal de crianças carentes da cidade de Lighthaizen. Deseja me ajudar?";
+		next;
+		if( select("Sim!:Agora não...") == 2 )
+		{
+			mes "[Papai Noelzin]";
+			mes "Tudo bem... Até mais!";
+			close;
+		}
+		if(countitem(529) >= 100 && countitem(530) >= 100 && countitem(909) >= 100 && countitem(2227) >= 1)
+		{
+			delitem 529,100;
+			delitem 530,100;
+			delitem 909,100;
+			delitem 2227,1;
+			getitem 5381,1;
+			mes "[Papai Noelzin]";
+			mes "Parabéns! Aqui está!";
+			close;
+		}
+		break;
+	case 2:
+		mes "[Papai Noelzin]";
+		mes "Tudo bem, estarei aqui se você mudar de idéia.";
+		close;
+	}
+	mes "[Papai Noelzin]";
+	mes "Me desculpe, mas você não tem todos os itens necessários para esta quest.";
+	mes "Volte quando você tiver todos os itens!";
+	close;
+}

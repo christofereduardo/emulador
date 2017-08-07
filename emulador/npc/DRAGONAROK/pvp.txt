@@ -1,0 +1,31 @@
+prontera,153,193,5	script	Arena de PvP	4_M_CRU_SOLD,{
+	
+mes "[Soldado de Prontera]";
+	mes "Olá, deseja ir para a arena Player vs Player (PVP)?";
+	switch (select("Sim:Não"))
+	{
+	case 1:
+	mes "[Ministro do Comércio]";
+	mes "Boa sorte.";
+	next;
+	announce "O Jogador [ " + strcharinfo(0) + " ] entrou no PvP.",1,0x666699;
+		warp "pvp_n_1-3",0,0;
+		end;
+	
+	case 2:
+	mes "[Soldado de Prontera]";
+	mes "Volte quando tiver coragem.";
+	close;
+		}
+	OnInit:
+	waitingroom "PvP Arena",0;
+	end;
+}
+
+
+pvp_n_1-3	mapflag	noloot
+pvp_n_1-3	mapflag	nomemo
+pvp_n_1-3	mapflag	nobranch
+pvp_n_1-3	mapflag	nosave	SavePoint
+pvp_n_1-3	mapflag	nowarpto
+pvp_n_1-3	mapflag	nocommand

@@ -1,0 +1,30 @@
+new_1-1,65,150,6	script	Papai	1_M_HOF,,{
+
+mes "[Papai]";
+mes ""+strcharinfo(0)+", m"+ (Sex?"eu":"inha") +" filh"+ (Sex?"o":"a") +", estou muito feliz que tenha decidido treinar para ser um guerreiro defensor de nossa Rune Midgard.";
+next;
+mes "[Papai]";
+mes "Espero ter boas notícias sobre seu treinamento, e espero que você vá nos visitar após atingir seus objetivos.";
+next;
+mes "[Papai]";
+mes "Que Odin te proteja.";
+close;
+}
+
+new_1-1,63,150,5	script	Mamãe	1_M_INNKEEPER,,{
+
+mes "[Mamãe]";
+mes "Oh meu Odin sagrado...meu bebê vai nos deixar, mamãe vai sentir muito sua falta.";
+next;
+mes "[Mamãe]";
+mes "Que Odin te proteja meu bebê, tome banho todos os dias e coma bem pra ficar bem forte, tá?";
+next;
+mes "[^339966"+strcharinfo(0)+"^000000]";
+mes "Poxa mamãe, por favor não me deixe sem graça. Não sou mais um bebê.";
+next;
+mes "[Mamãe]";
+mes "Okay queridinh"+ (Sex?"o":"a") +", vou parar de sentimentalismo e te desejar boa sorte."; 
+mes "";
+mes "Se precisar falar conosco estaremos aqui todos os dias oferecendo nossas preces para Odin te proteger.";
+close;
+}

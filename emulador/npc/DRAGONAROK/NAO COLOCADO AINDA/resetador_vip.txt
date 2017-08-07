@@ -1,0 +1,75 @@
+//| ================================================================================ |
+sec_in02,19,178,3	script	Resetadora VIP	759,{
+//| ================================================================================ |
+//| 				~ Configuração ~				     |
+//|										     |
+setarray @price[0],1000,1000,500; // Em ordem: { @price[0],Atributos,Skill,Ambos }  |
+//|										     |
+//| ================================================================================ |
+
+		if (Caught) { callfunc "ResetStats";
+	mes "[ ^CD7F32Resetadora VIP^000000 ]";
+	mes "Parabéns!";
+	mes "- Você terminou de resetar seus Atributos.";
+	close;
+			}
+	mes "[ ^CD7F32Resetadora VIP^000000 ]";
+	mes "Olá, ^4682B4"+strcharinfo(0)+"^000000!";
+	mes "Eu posso Resetar seus Atributos e Habilidades !";
+	mes "Deseja fazer algo ?";
+	next;
+				switch(select("- ^0047ABResetar Atributos^000000 ["+@price[0]+"z]","- ^0047ABResetar Skill^000000 ["+@price[1]+"z]","- ^0047ABResetar Ambos^000000 ["+@price[2]+"z]","- Nada.")) {
+case 1:
+			if ( Zeny < @price[0] ) { mes "Você não possui dinheiro para Resetar seus Atributos!"; close; }
+			if ( BaseLevel >= 796 ) callfunc "ResetStats"; else resetstatus;
+		set Zeny,Zeny-@price[0];
+	mes "[ ^CD7F32Resetadora VIP^000000 ]";
+	mes "Parabéns!";
+	mes "Você terminou de resetar seus Atributos.";
+	close;
+case 2:
+			if ( Zeny < @price[1] ) { mes "Você não possui dinheiro para Resetar suas Habilidades!"; close; }
+		setoption 0;
+					resetskill;
+	close2;
+		set Zeny,Zeny-@price[1];
+	mes "[ ^CD7F32Resetadora VIP^000000 ]";
+	mes "- Suas Habilidades foram Resetadas!";
+	close;
+case 3:
+			if ( Zeny < @price[2] ) { mes "Você não possui dinheiro para Resetar!"; close; }
+		setoption 0; resetskill;
+	mes "[ ^CD7F32Resetadora VIP^000000 ]";
+	mes "- Suas Skill foram Resetadas!";
+			if ( BaseLevel >= 796 ) callfunc "ResetStats"; else resetstatus;
+		set Zeny,Zeny-@price[2];
+	mes "- Seus Atributos foram Resetados!";
+	close;
+case 4:
+	mes "[ ^CD7F32Resetadora VIP^000000 ]";
+	mes "Volte sempre!";
+	close;
+		}
+	}
+
+function	script	ResetStats	{
+
+			if (!Caught) {
+					statusup2 bStr,-999;statusup2 bAgi,-999;statusup2 bVit,-999;
+					statusup2 bInt,-999;statusup2 bDex,-999;statusup2 bLuk,-999;
+		set StatusPoint,65349; set Caught,1;
+	mes "[ ^CD7F32Resetadora VIP^000000 ]";
+	mes "- Seus Atributos foram resetados!";
+	mes "Você deve distribuir seus pontos. Após isso volte a falar comigo para receber o resto dos pontos de Atributos.";
+	close;
+			}
+				for(set @i,796;@i!=BaseLevel;set @i,@i+1) {
+		set @d,@d+1;
+			if ( @d == 10 ) { set @d,0; set @b,@b+1; }
+		set @s,@s+(162+@b); }
+			if ( (StatusPoint+@s) >= 65349 ) { mes "[ ^CD7F32Resetadora VIP^000000 ]"; mes "Por favor, distribua seus pontos e volte a falar comigo!"; close; }
+		set StatusPoint,StatusPoint+@s+100;
+			if (Upper) set StatusPoint,StatusPoint+100;
+		set Caught,0;
+						return;
+}

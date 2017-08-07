@@ -1,0 +1,38 @@
+prontera,166,200,4	script	Garota Negociante	4_F_JOB_BLACKSMITH,{
+
+	mes "[Universal Rental Npc]";
+	mes "Hi, here you can rent Carts, Falcons or Pecopecos.";
+	next;
+	switch(select("Cart:Falcon:Peco")) {
+		case 1:
+			if((BaseClass == Job_Merchant || BaseJob == Job_SuperNovice) && checkcart() == 0 && getskilllv("MC_PUSHCART")>0) {
+				setcart;
+				close;
+			}else{
+				mes "[Universal Rental Npc]";
+				mes "Sorry " + strcharinfo(0) + ", Please make sure you are the required job and have the required skill.";
+				close;
+			}
+		case 2:
+			if(BaseJob != Job_Archer && BaseClass == Job_Archer && checkfalcon() == 0 && getskilllv("HT_FALCON")>0) {
+				setfalcon;
+				close;
+			}else{
+				mes "[Universal Rental Npc]";
+				mes "Sorry " + strcharinfo(0) + ", Please make sure you are the required job and have the required skill.";
+				close;
+			}					
+		case 3:
+			if (BaseJob != Job_Swordman && BaseClass == Job_Swordman && checkriding() == 0 && getskilllv("KN_RIDING")>0) {
+				setriding;
+				close;
+			}else{
+				mes "[Universal Rental Npc]";
+				mes "Sorry " + strcharinfo(0) + ", Please make sure you are the required job and have the required skill.";
+				close;
+OnInit:
+		waitingroom "Serviços de Aluguel",0;
+		end;
+			}
+	}
+}

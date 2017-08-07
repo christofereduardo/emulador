@@ -1,0 +1,91 @@
+/*
+script	timer	-1,{
+end;
+
+			OnInit:
+			if(gettime(3) > 20 && gettime(3) < 23) {
+	goto DIA;
+}
+	else
+{
+	goto NOITE;
+}
+	NOITE:
+	[b]night;[/b]
+	announce "Anoitece e os habitantes de Rune-Midgard retornam para suas casas...",0;
+	end;
+	
+	DIA:
+	[b]day;[/b]
+	announce "O Sol se levanta sobre toda Rune-Midgard...",0;
+	end;
+	
+		OnHour23:
+		goto NOITE;
+		
+		OnHour20:
+		goto DIA;
+		
+			OnClock1200:
+				announce "Mais uma tarde no horizonte, o Sol está em seu ponto mais alto...",0;
+				end;
+				
+			OnClock2400:
+				announce "Uma escuridão sinistra cai sobre o Mundo dos Homens...",0;
+				end;
+}
+
+-	script	dianoite	-1,{
+	end;
+	
+OnClock0700:	// horário de iniciar Terça(2), Quinta(4)
+OnClock1900:	// horário de encerrar Terça(2), Quinta(4)
+
+OnInit:
+	// verificação de tempo de iniciar
+	if((gettime(4)==1) && (gettime(3)>=07 && gettime(3)<19) ||
+	   (gettime(4)==2) && (gettime(3)>=07 && gettime(3)<19) ||
+	   (gettime(4)==3) && (gettime(3)>=07 && gettime(3)<19) ||
+	   (gettime(4)==4) && (gettime(3)>=07 && gettime(3)<19) ||
+	   (gettime(4)==5) && (gettime(3)>=07 && gettime(3)<19) ||
+	   (gettime(4)==6) && (gettime(3)>=07 && gettime(3)<19) ||
+	   (gettime(4)==0) && (gettime(3)>=07 && gettime(3)<19)) {
+			set $@isnight, 1; 
+			night;
+	}
+
+	// verificação de tempo de encerramento
+	if ((gettime(4)==1) && (gettime(3)==19) ||
+	    (gettime(4)==2) && (gettime(3)==19) ||
+		(gettime(4)==3) && (gettime(3)==19) ||
+	    (gettime(4)==4) && (gettime(3)==19) ||
+		(gettime(4)==5) && (gettime(3)==19) ||
+	    (gettime(4)==6) && (gettime(3)==19) ||
+	    (gettime(4)==0) && (gettime(3)==19)) {
+			set $@isnight, 0;
+			day;
+	}
+	end;
+}
+*/
+
+-	script	DayNight	-1,{
+OnClock0600:
+		announce "Anoitece e os habitantes de Rune-Midgard retornam para suas casas...",0;
+		day;
+	end;
+OnInit:
+	// setting correct mode upon server start-up
+	if(gettime(3)>=6 && gettime(3)<18) end;
+OnClock1800:
+		announce "O Sol se levanta sobre toda Rune-Midgard...",0;
+		night;
+	end;
+				OnClock1200:
+				announce "Mais uma tarde no horizonte, o Sol está em seu ponto mais alto...",0;
+				end;
+				
+				OnClock2400:
+				announce "Uma escuridão sinistra cai sobre o Mundo dos Homens...",0;
+				end;
+}

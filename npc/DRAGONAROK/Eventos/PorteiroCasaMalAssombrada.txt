@@ -1,0 +1,56 @@
+prontera,94,167,6	script	Porteiro da Casa	8W_SOLDIER,{
+
+if (getgmlevel() < 50) goto casa_mal;
+casa_mal:mes "[Guarda]";	mes "Desculpe, mas não posso permitir a entrada de qualquer guerreiro sem a autorização da Cavalaria de Prontera.";	
+next;	
+mes "[Guarda]";	mes "Esta casa é Mal Assombrada e está repleta de monstros e demônios.";	next;		mes "[Guarda";		mes "Se você quiser, pode aguardar o anúncio de entrada da Cavalaria de Prontera, que autorizará a entrada de bravos guerreiros para enfrentar esses monstros horríveis.";	close;//============================================================== ABAIXO SCRIPT ANTIGO DO PORTEIRO VIP ==========================================================================================//
+mes "[Guarda]";
+	mes "Será permitida a entrada na sala PRÓ somente aqueles que são PRÓ-JOGADORES.";
+	next;
+	mes "[Guarda]";
+	mes "Voce é um membro PRÓ?";
+	next;
+	switch (select("Sim:Nao"))
+	{
+	case 1:
+	mes "[Guarda]";
+	mes "Identifique-se por favor?";
+	next;
+	mes "";
+	if( select("Mostrar seu RG de Pró-Jogador!:Não mostrar") == 2 )
+		{
+			mes "[Guarda]";
+			mes " Se não quer apresentar seu RG, nao posso permitir a sua entrada. Passar bem.";
+			close;
+		}	
+		if (getgmlevel() < 50) goto n_PRO;
+		{
+			mes "[Guarda]";
+			mes "Seja bem vindo. Aproveite!";
+			next;
+			warp "mal_in01",33,217;
+			end;
+			
+		n_PRO:
+			mes "[Guarda]";
+			mes "Acha que eu não conheço um RG de Pró-Jogador falso? Vamos, caia fora daqui!!";
+			close;
+		}
+		break;
+	case 2:
+		mes "[Guarda]";
+		mes " Nao posso permitir a sua entrada sem o RG. Desculpe.";
+		close;
+	}
+	
+	OnInit:
+	waitingroom "Casa dos Vlandyn",0;
+	end;
+	}
+	
+mal_in01	mapflag	noloot
+mal_in01	mapflag	nomemo
+mal_in01	mapflag	nobranch
+mal_in01	mapflag	nosave	SavePoint
+mal_in01	mapflag	nowarpto
+mal_in01	mapflag	noskill

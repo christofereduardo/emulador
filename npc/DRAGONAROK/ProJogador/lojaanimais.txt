@@ -1,0 +1,12 @@
+dew_in01,26,39,2	script	Vicctor	1_M_01,{
+
+mes "[Vicctor]";
+mes "Ops, parece que ocorreu algum erro. Por favor, saia da sala VIP e venha falar comigo novamente para que eu abra a loja para você.";
+close;
+
+OnInit:
+waitingroom "Loja de Animais",0;
+end;
+}
+
+dew_in01,26,39,2	cashshop	Animais Estimação [Topo]	1_M_01,9041:6000,9028:7000,9030:5000,9036:8000,9045:6000,9026:8000,9051:6000,9043:4000,9046:8000,9040:5000

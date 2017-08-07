@@ -1,0 +1,48 @@
+sql.db_hostname: 127.0.0.1
+sql.db_port: 3306
+sql.db_username: rlcpe4wm
+sql.db_password: B5eqraolh3
+sql.db_database: rlcpe4wm_ragnarok
+
+ipban.sql.db_hostname: 127.0.0.1
+ipban.sql.db_port: 3306
+ipban.sql.db_username: rlcpe4wm
+ipban.sql.db_password: B5eqraolh3
+ipban.sql.db_database: rlcpe4wm_ragnarok
+ipban.sql.codepage:
+ipban.sql.ipban_table: ipbanlist
+
+account.sql.db_hostname: 127.0.0.1
+account.sql.db_port: 3306
+account.sql.db_username: rlcpe4wm
+account.sql.db_password: B5eqraolh3
+account.sql.db_database: rlcpe4wm_ragnarok
+account.sql.codepage:
+account.sql.case_sensitive: no
+account.sql.account_db: login
+account.sql.accreg_db: global_reg_value
+
+char_server_ip: 127.0.0.1
+char_server_port: 3306
+char_server_id: rlcpe4wm
+char_server_pw: B5eqraolh3
+char_server_db: rlcpe4wm_ragnarok
+
+map_server_ip: 127.0.0.1
+map_server_port: 3306
+map_server_id: rlcpe4wm
+map_server_pw: B5eqraolh3
+map_server_db: rlcpe4wm_ragnarok
+
+log_db_ip: 127.0.0.1
+log_db_port: 3306
+log_db_id: rlcpe4wm
+log_db_pw: B5eqraolh3
+log_db_db: rlcpe4wm_ragnarok
+log_login_db: rlcpe4wm_ragnarok
+
+db_ip: 127.0.0.1
+db_port: 3306
+db_id: rlcpe4wm
+db_pw: B5eqraolh3
+db_name: rlcpe4wm_ragnarok

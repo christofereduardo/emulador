@@ -1,0 +1,92 @@
+prontera,147,170,5	script	Soldado de Prontera	4_M_CRU_SOLD,{
+
+if(getgmlevel() < 50)
+	{
+		if(!.poringcatch)
+		{
+			mes "[ Soldado de Prontera ]";
+			mes "Não há registro de novos ataques no momento, por favor aguarde a chamada.";
+			close;
+		}
+		mes "[ Soldado de Prontera ]";
+		mes "Olá "+strcharinfo(0)+" o que posso fazer por você?";
+		next;
+		switch(select("Entrar no evento.:Informação."))
+		{
+			case 1:
+				mes "[ Soldado de Prontera ]";
+				mes "Dê o seu melhor!";
+				next;
+				warp "izlude", 127, 150;
+				end;
+
+			case 2:
+				mes "[ Soldado de Prontera ]";
+				mes "A cidade de Izlude está sendo vítima de constantes ataques de monstros.";
+				mes "Eles saqueiam a cidade e levam o produto do roubo para algum lugar ainda não descoberto.";
+				mes "Eles são um pouco fortes, mas sempre carregam itens valiosos consigo, se derrotá-los, poderá ficar com eles.";
+				mes "Boa Sorte.";
+				close;
+		}
+	}
+	mes "[ Soldado de Prontera ]";
+	mes "Olá "+strcharinfo(0)+" o que posso fazer por você?";
+	next;
+	if(select("Ligar evento.:Entrar no evento.") == 1) callsub OnEventStart;
+	mes "[ Soldado de Prontera ]";
+	mes "Divirta-se!";
+	next;
+	warp "izlude", 127, 150;
+	end;
+
+		OnClock0800: callsub OnEventStart;
+		OnClock1000: callsub OnEventStart;
+		OnClock1400: callsub OnEventStart;
+		OnClock1702: callsub OnEventStart;
+		OnClock1905: callsub OnEventStart;
+		Onclock2100: callsub OnEventStart;
+		OnClock0100: callsub OnEventStart;
+		Onclock0330: callsub OnEventStart;
+		OnClock0500: callsub OnEventStart;
+		
+		
+		OnEventStart:
+			announce "[ Soldado de Prontera ]: ALERTA VERMELHO! ALERTA VERMELHO! Monstros estão invadindo a cidade de Izlude!!!",0;
+			initnpctimer;
+			monster "izlude",0,0,"Atroce",1785,1,strnpcinfo(0)+"::OnMobKilled";
+			monster "izlude",0,0,"Banshee",1867,8,strnpcinfo(0)+"::OnWrongKilled";
+			monster "izlude",0,0,"Encarnação de Morroc",1920,3,strnpcinfo(0)+"::OnWrongKilled";
+			monster "izlude",0,0,"Fire Imp",1837,5,strnpcinfo(0)+"::OnWrongKilled";
+			monster "izlude",0,0,"Zombie Slaughter",1864,10,strnpcinfo(0)+"::OnWrongKilled";
+			set .poringcatch,1;
+			end;
+			return;
+
+		OnTimer600000:
+			stopnpctimer;
+			announce "[ Soldado de Prontera ]: O tempo acabou, tente na próxima vez.",0;
+			set .poringcatch,0;
+			killmonsterall "izlude";
+			end;
+
+		OnMobKilled:
+			stopnpctimer;
+			announce "[ Soldado de Prontera ]: "+strcharinfo(0)+" derrotou o Líder da invasão, seus feitos serão lembrados e recompensados.",0;
+			dispbottom "Parabéns, você derrotou o líder do bando.";
+			getitem $ipe,$qpe;
+			killmonsterall "izlude";
+			set .poringcatch,0;
+			mes "Algumas Silver Coins foram pilhadas do monstro por você!";
+			getitem 675,5;
+			close;
+			
+			end;
+
+		OnWrongKilled:
+			dispbottom "Este era apenas um subordinado, mate o Líder do bando. Você pilhou 100.000 Zenys do Monstro!";
+			set Zeny,Zeny+100000;
+			end;
+		OnInit:
+			waitingroom "Novo Recruta",0;
+			end;
+}

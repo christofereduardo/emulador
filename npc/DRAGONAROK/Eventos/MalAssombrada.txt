@@ -1,0 +1,111 @@
+prontera,147,160,5	script	Guarda Pronteriano	4_M_MOC_SOLDIER,{
+
+{
+	if(getgmlevel() < 50)
+	{
+		{
+			mes "[Guarda Pronteriano]";
+			mes "A casa dos Vladyn ficou mal assombrada após a tragédia ocorrida com a família. Frequentemente, monstros surgem para ficar rondando o interior da casa, pois eles estão cobiçando os tesouros da família.";
+			next;
+			mes "[Guarda Pronteriano]";
+			mes "A Guarda Pronteriana costuma abrir caçadas em determinados horários do dia, os horários são:";
+			next;
+			mes "[Guarda Pronteriano]";
+			mes "00:00, 03:00, 06:00, 09:00, 12:00 e ás 21:00";
+			close;
+		}
+		mes "[Guarda Pronteriano]";
+		mes "Olá "+strcharinfo(0)+" o que posso fazer por você?";
+		next;
+		switch(select("Entrar no evento.:Informação."))
+		{
+			case 1:
+				mes "[Guarda Pronteriano]";
+				mes "Boa sorte!";
+				next;
+				warp "mal_01", 33, 217;
+				end;
+
+			case 2:
+				mes "[Guarda Pronteriano]";
+				mes "Monstros invadem com frequência a residência dos Vlandyn...";
+				mes "Eles tem um sub lider e um líder...";
+				mes "Você deve achar o sub lider e pegar o tesouro da família Vladyn...";
+				mes "E por fim matar o líder que é um MvP.";
+				close;
+		}
+	}
+	mes "[Guarda Pronteriano]";
+	mes "Olá ADM "+strcharinfo(0)+" o que posso fazer por você?";
+	next;
+	switch(select("Ligar evento.:Entrar no evento."))
+	{
+		case 1:
+			mes "[Guarda Pronteriano]";
+			mes "Evento Ligado com sucesso.";
+			close2;
+			callsub OnEventStart2;
+
+					
+		case 2:
+			mes "[Guarda Pronteriano]";
+			mes "Divirta-se!";
+			next;
+			warp "mal_in01", 33, 217;
+			end;
+	}
+}
+	
+		OnClock0000: callsub OnEventStart1;
+		OnClock0300: callsub OnEventStart2;
+				
+		OnEventStart1:
+			announce "[Guarda Pronteriano]: ATENÇÃO! A Guarda Pronteriana convoca os guerreiros mais poderosos para entrar na Residência dosz Vlandyn. Há uma invasão de monstros e um MvP lá. Venham a Prontera e falem comigo para entrar.",0;
+			initnpctimer;
+			monster "mal_in01",0,0,"Kasa",1833,1,strnpcinfo(0)+"::OnMobKilled";
+			monster "mal_in01",0,0,"Kasa",1833,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "mal_in01",0,0,"Fire Imp",1837,13,strnpcinfo(0)+"::OnWrongKilled";
+			monster "mal_in01",0,0,"Sword Guardian",1829,1,strnpcinfo(0)+"::OnWrongKilled";
+			monster "mal_in01",0,0,"Archer Guardian",1830,1,strnpcinfo(0)+"::OnWrongKilled";
+			
+			end;
+			return;
+			
+
+		OnTimer600000:
+			stopnpctimer;
+			announce "[Guarda Pronteriano]: Os monstros fizeram retirada e levaram o tesouro dos Vladyn.",0;
+			killmonsterall "mal_in01";
+			end;
+
+		OnMobKilled:
+			stopnpctimer;
+			announce "[Guarda Pronteriano]: "+strcharinfo(0)+" encontrou o Sub Líder e recuperou o tesouro dos Vladyn, mas ainda resta o Líder que está em alguma parte da casa.",0;
+			dispbottom "Parabéns, você encontrou o Sub líder.";
+			getitem $ipe,$qpe;
+			killmonsterall "mal_in01";
+			getitem 12208,1;
+			monster "mal_in01",164,29,"Ifrit",1832,1,strnpcinfo(0)+"::OnMVPKilled";
+			switch(select("Sair da casa:Ficar na casa"))
+			{
+			case 1:
+			warp "prontera",157,175;
+			
+			case 2:
+			close;
+			}			
+
+		OnMVPKilled:
+			announce "[Guarda Pronteriano]: "+strcharinfo(0)+" Matou o Líder dos monstros. Meus parabéns pela bravura, mas as invasões a residência dos vladyn ainda ocorrerão. Fiquem atentos.",0;
+			dispbottom "Parabéns, você encontrou o líder.";
+			end;	
+			
+		OnWrongKilled:
+			dispbottom "Este não era o sub líder, continue procurando.";
+			end;
+
+OnInit:
+waitingroom "Casa Mal Assombrada",0;
+end;
+}
+
