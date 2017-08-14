@@ -477,6 +477,9 @@ struct Battle_Config {
 	int min_npc_vendchat_distance;
 	int atcommand_mobinfo_type;
 	
+	// Costume System
+	int reserved_costume_id;
+	
 	int mob_size_influence; // Enable modifications on earned experience, drop rates and monster status depending on monster size. [mkbu95]
 	
 	/** Hercules **/

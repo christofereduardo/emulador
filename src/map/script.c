@@ -18660,6 +18660,53 @@ BUILDIN(shopcount) {
 
 	return true;
 }
+ 
+/*==========================================
+ * Costume Items /[Mhalicot]
+ * Revisão [SlexFire]
+*------------------------------------------*/
+
+BUILDIN(costume)
+{
+	int i = -1, num, ep;
+	TBL_PC *sd;
+
+	num = script_getnum(st,2);
+	sd = script->rid2sd(st);
+
+	if( sd == NULL )
+		return 0;
+	if( num > 0 && num <= ARRAYLENGTH(script->equip) )
+		i = pc->checkequip(sd, script->equip[num - 1]);
+	if( i < 0 )
+		return 0;
+	ep = sd->status.inventory[i].equip;
+	if( !(ep&EQP_HEAD_LOW) && !(ep&EQP_HEAD_MID) && !(ep&EQP_HEAD_TOP) )
+		return 0;
+
+	logs->pick_pc(sd, LOG_TYPE_SCRIPT, -1, &sd->status.inventory[i],sd->inventory_data[i]);
+	pc->unequipitem(sd,i,2);
+	clif->delitem(sd,i,1,3);
+	// --------------------------------------------------------------------
+	sd->status.inventory[i].refine = 0;
+	sd->status.inventory[i].attribute = 0;
+	sd->status.inventory[i].card[0] = CARD0_CREATE;
+	sd->status.inventory[i].card[1] = 0;
+	sd->status.inventory[i].card[2] = GetWord(battle_config.reserved_costume_id, 0);
+	sd->status.inventory[i].card[3] = GetWord(battle_config.reserved_costume_id, 1);
+
+	if( ep&EQP_HEAD_TOP ) { ep &= ~EQP_HEAD_TOP; ep |= EQP_COSTUME_HEAD_TOP; }
+	if( ep&EQP_HEAD_LOW ) { ep &= ~EQP_HEAD_LOW; ep |= EQP_COSTUME_HEAD_LOW; }
+	if( ep&EQP_HEAD_MID ) { ep &= ~EQP_HEAD_MID; ep |= EQP_COSTUME_HEAD_MID; }
+	// --------------------------------------------------------------------
+	logs->pick_pc(sd, LOG_TYPE_SCRIPT, 1, &sd->status.inventory[i],sd->inventory_data[i]);
+
+	clif->additem(sd,i,1,0);
+	pc->equipitem(sd,i,ep);
+	clif->misceffect(&sd->bl,3);
+
+	return true;
+}
 
 // declarations that were supposed to be exported from npc_chat.c
 #ifdef PCRE_SUPPORT
@@ -19240,6 +19287,8 @@ void script_parse_builtin(void) {
 		BUILDIN_DEF(checkquest, "i?"),
 		BUILDIN_DEF(changequest, "ii"),
 		BUILDIN_DEF(showevent, "i?"),
+		// Costume System
+		BUILDIN_DEF(costume,"i"),
 
 		/**
 		 * hQueue [Ind/Hercules]
