@@ -1355,7 +1355,32 @@ void itemdb_read_combos() {
 	return;
 }
 
+/*======================================
+// Extended Vending system [Lilith]
+*======================================*/
 
+static bool itemdb_read_vending(char* fields[], int columns, int current)
+{
+	struct item_data* id;
+	unsigned short nameid;
+	nameid = atoi(fields[0]);
+
+	if ((id = itemdb_exists(nameid)) == NULL)
+	{
+		ShowWarning("itemdb_read_vending: Invalid item id %hu.\n", nameid);
+		return false;
+	}
+
+	if (id->type == IT_ARMOR || id->type == IT_WEAPON)
+	{
+		ShowWarning("itemdb_read_vending: item id %hu cannot be equipment or weapon.\n", nameid);
+		return false;
+	}
+
+	item_vend[current].itemid = nameid;
+
+	return true;
+}
 
 /*======================================
  * Applies gender restrictions according to settings. [Skotlex]
@@ -2068,6 +2093,7 @@ void itemdb_read(void) {
 	itemdb->read_groups();
 	itemdb->read_chains();
 	itemdb->read_packages();
+	sv->readdb(map->db_path, "item_vending.txt", ',', 1, 1, ARRAYLENGTH(item_vend), &itemdb_read_vending);
 
 }
 
@@ -2193,6 +2219,7 @@ void itemdb_reload(void) {
 	int i,d,k;
 	
 	itemdb->clear(false);
+	memset(item_vend, 0, sizeof(item_vend)); // Extended Vending system [Lilith]
 
 	// read new data
 	itemdb->read();

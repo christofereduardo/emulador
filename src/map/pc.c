@@ -641,7 +641,7 @@ int pc_makesavestatus(struct map_session_data *sd)
 /*==========================================
  * Off init ? Connection?
  *------------------------------------------*/
-int pc_setnewpc(struct map_session_data *sd, int account_id, int char_id, int login_id1, unsigned int client_tick, int sex, int fd)
+int pc_setnewpc(struct map_session_data *sd, int account_id, int char_id, int login_id1, unsigned int client_tick, int sex, int fd, unsigned short nameid)
 {
 	nullcheck(sd);
 
@@ -655,6 +655,7 @@ int pc_setnewpc(struct map_session_data *sd, int account_id, int char_id, int lo
 	sd->state.active = 0; //to be set to 1 after player is fully authed and loaded.
 	sd->bl.type      = BL_PC;
 	sd->canlog_tick  = timer->gettick();
+	sd->vend_loot 	 = nameid;
 	//Required to prevent homunculus copuing a base speed of 0.
 	sd->battle_status.speed = sd->base_status.speed = DEFAULT_WALK_SPEED;
 	return 0;
@@ -10406,22 +10407,23 @@ void pc_autotrade_load(void) {
 	struct map_session_data *sd;
 	char *data;
 	
-	if (SQL_ERROR == SQL->Query(map->mysql_handle, "SELECT `account_id`,`char_id`,`sex`,`title` FROM `%s`",map->autotrade_merchants_db))
+	if (SQL_ERROR == SQL->Query(map->mysql_handle, "SELECT `account_id`,`char_id`,`sex`,`vend_loot`,`title` FROM `%s`",map->autotrade_merchants_db))
 		Sql_ShowDebug(map->mysql_handle);
 	
 	while( SQL_SUCCESS == SQL->NextRow(map->mysql_handle) ) {
-		int account_id, char_id;
+		int account_id, char_id, vend_loot;
 		char title[MESSAGE_SIZE];
 		unsigned char sex;
 		
 		SQL->GetData(map->mysql_handle, 0, &data, NULL); account_id = atoi(data);
 		SQL->GetData(map->mysql_handle, 1, &data, NULL); char_id = atoi(data);
 		SQL->GetData(map->mysql_handle, 2, &data, NULL); sex = atoi(data);
-		SQL->GetData(map->mysql_handle, 3, &data, NULL); safestrncpy(title, data, sizeof(title));
+		SQL->GetData(map->mysql_handle, 3, &data, NULL); vend_loot = atoi(data);
+		SQL->GetData(map->mysql_handle, 4, &data, NULL); safestrncpy(title, data, sizeof(title));
 
 		CREATE(sd, TBL_PC, 1);
 		
-		pc->setnewpc(sd, account_id, char_id, 0, 0, sex, 0);
+		pc->setnewpc(sd, account_id, char_id, 0, 0, sex, 0, vend_loot);
 		
 		safestrncpy(sd->message, title, MESSAGE_SIZE);
 		
@@ -10429,6 +10431,9 @@ void pc_autotrade_load(void) {
 		sd->group = pcg->get_dummy_group();
 		
 		chrif->authreq(sd,true);
+
+		// Extended Vending system [Lilith]
+		sd->vend_loot = vend_loot;
 	}
 		
 	SQL->FreeResult(map->mysql_handle);
@@ -10502,11 +10507,12 @@ void pc_autotrade_update(struct map_session_data *sd, enum e_pc_autotrade_update
 			
 			SQL->EscapeStringLen(map->mysql_handle, title, sd->message, strnlen(sd->message, MESSAGE_SIZE));
 
-			if (SQL_ERROR == SQL->Query(map->mysql_handle, "INSERT INTO `%s` (`account_id`,`char_id`,`sex`,`title`) VALUES ('%d','%d','%d','%s')",
+			if (SQL_ERROR == SQL->Query(map->mysql_handle, "INSERT INTO `%s` (`account_id`,`char_id`,`sex`,`vend_loot`,`title`) VALUES ('%d','%d','%d','%d','%s')",
 										map->autotrade_merchants_db,
 										sd->status.account_id,
 										sd->status.char_id,
 										sd->status.sex,
+										sd->vend_loot,
 										title
 										))
 				Sql_ShowDebug(map->mysql_handle);
@@ -10538,6 +10544,7 @@ void pc_autotrade_prepare(struct map_session_data *sd) {
 	int account_id, char_id;
 	char title[MESSAGE_SIZE];
 	unsigned char sex;
+	unsigned short nameid;
 
 	CREATE(data, struct autotrade_vending, 1);
 	
@@ -10558,6 +10565,7 @@ void pc_autotrade_prepare(struct map_session_data *sd) {
 	char_id = sd->status.char_id;
 	sex = sd->status.sex;
 	safestrncpy(title, sd->message, sizeof(title));
+	nameid = sd->vend_loot;
 	
 	sd->npc_id = 0;
 	sd->npc_shopid = 0;
@@ -10568,9 +10576,12 @@ void pc_autotrade_prepare(struct map_session_data *sd) {
 	map->quit(sd);
 	chrif->auth_delete(account_id, char_id, ST_LOGOUT);
 
+	if(!battle_config.extended_vending)
+		nameid = 0;
+
 	CREATE(sd, TBL_PC, 1);
 	
-	pc->setnewpc(sd, account_id, char_id, 0, 0, sex, 0);
+	pc->setnewpc(sd, account_id, char_id, 0, 0, sex, 0, nameid);
 	
 	safestrncpy(sd->message, title, MESSAGE_SIZE);
 	

@@ -569,6 +569,9 @@ struct map_session_data {
 	// temporary debugging of bug #3504
 	const char* delunit_prevfile;
 	int delunit_prevline;
+	
+	unsigned short vend_loot;
+	int vend_lvl;
 
 };
 
@@ -806,7 +809,7 @@ struct pc_interface {
 	int (*setrestartvalue) (struct map_session_data *sd,int type);
 	int (*makesavestatus) (struct map_session_data *sd);
 	void (*respawn) (struct map_session_data* sd, clr_type clrtype);
-	int (*setnewpc) (struct map_session_data *sd, int account_id, int char_id, int login_id1, unsigned int client_tick, int sex, int fd);
+	int (*setnewpc) (struct map_session_data *sd, int account_id, int char_id, int login_id1, unsigned int client_tick, int sex, int fd, unsigned short nameid);
 	bool (*authok) (struct map_session_data *sd, int login_id2, time_t expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers);
 	void (*authfail) (struct map_session_data *sd);
 	int (*reg_received) (struct map_session_data *sd);

@@ -505,7 +505,14 @@ struct Battle_Config {
 	int skull_collect_pvp;
 	int gm_stand_woe;
 	int level_nick_enabled;
-	
+
+	// Extended Vending system [Lilith]
+	int extended_vending;
+	int show_broadcas_info;
+	int show_item_vending;
+	int ex_vending_info;
+	int item_zeny;
+	int item_cash;
 };
 
 extern struct Battle_Config battle_config;

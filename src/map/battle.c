@@ -6761,7 +6761,14 @@ static const struct _battle_data {
 	{ "skull_collect_pvp",				&battle_config.skull_collect_pvp,			0,		0,		1,				},
 	{ "gm_stand_woe",				&battle_config.gm_stand_woe,			0,		0,		1,				},
 	{ "level_nick_enabled",			&battle_config.level_nick_enabled,			0,		0,		1,				},
-	
+
+	// Extended Vending system [Lilith]
+	{ "extended_vending",					&battle_config.extended_vending,				1,		0,		1,				},
+	{ "show_broadcas_info",					&battle_config.show_broadcas_info,				1,		0,		1,				},
+	{ "show_item_vending",					&battle_config.show_item_vending,				1,		0,		1,				},
+	{ "ex_vending_info",					&battle_config.ex_vending_info,					1,		0,		1,				},
+	{ "item_zeny",							&battle_config.item_zeny,						0,		0,		MAX_ITEMDB,		},
+	{ "item_cash",							&battle_config.item_cash,						0,		0,		MAX_ITEMDB,		},
 };
 
 int battle_set_value(const char* w1, const char* w2)

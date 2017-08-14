@@ -79,6 +79,7 @@ struct skill_cd;
 #define clif_disp_onlyself(sd,mes,len) clif->disp_message( &(sd)->bl, (mes), (len), SELF )
 #define clif_viewequip_fail( sd ) clif_msg( (sd), 0x54d );
 #define HCHSYS_NAME_LENGTH 20
+#define VEND_COLOR 	  0x00FFFF
 
 /**
  * Enumerations
@@ -1309,6 +1310,9 @@ struct clif_interface {
 	/* NPC Market (by Ind after an extensive debugging of the packet, only possible thanks to Yommy <3) */
 	void (*pNPCMarketClosed) (int fd, struct map_session_data *sd);
 	void (*pNPCMarketPurchase) (int fd, struct map_session_data *sd);
+	/* venda extentida */
+	void (*vendmessage) (struct map_session_data *sd, const char* msg, unsigned long color);
+	int (*vend) (struct map_session_data *sd, int skill_lv);
 };
 
 struct clif_interface *clif;

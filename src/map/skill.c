@@ -6473,8 +6473,43 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				if ( !pc_can_give_items(sd) )
 					clif->skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				else {
-					sd->state.prevend = sd->state.workinprogress = 3;
-					clif->openvendingreq(sd,2+skill_lv);
+					if (battle_config.extended_vending) {
+						struct item_data *item;
+						char output[1024];
+						int c = 0, i, d = 0;
+						sd->vend_lvl = skill_lv;
+						if (battle_config.item_zeny)
+							d++;
+						if (battle_config.item_cash)
+							d++;
+						for (c = d, i = 0; i < ARRAYLENGTH(item_vend); i++) {
+							if ((item = itemdb->exists(item_vend[i].itemid)) != NULL &&
+								item->nameid != ITEMID_ZENY && item->nameid != ITEMID_CASH)
+								c++;
+						}
+	
+						if (c > 1)
+							clif->vend(sd, sd->vend_lvl);
+						else {
+							sd->state.prevend = 1;
+							if (c) {
+								item = itemdb->exists(battle_config.item_zeny ? battle_config.item_zeny : battle_config.item_cash ? battle_config.item_cash : item_vend[0].itemid);
+								sd->vend_loot = item->nameid;
+								sprintf(output, msg_txt(1596), itemdb_jname(sd->vend_loot));
+								clif->vendmessage(sd,output,VEND_COLOR);
+								clif->openvendingreq(sd, 2 + sd->vend_lvl);
+							}
+							else {
+								sd->vend_loot = 0;
+								clif->openvendingreq(sd, 2 + sd->vend_lvl);
+							}
+						}
+					}
+					else {
+						sd->vend_loot = 0;
+						sd->state.prevend = 1;
+						clif->openvendingreq(sd, 2 + skill_lv);
+					}
 				}
 			}
 			break;
@@ -15849,6 +15884,32 @@ struct skill_unit_group_tickset *skill_unitgrouptickset_search(struct block_list
 	return &set[j];
 }
 
+int skill_vending(struct map_session_data *sd, unsigned short nameid) {
+	struct item_data *item;
+	char output[1024];
+	nullcheck(sd);
+	if (!pc_can_give_items(sd)) {
+		clif->skill_fail(sd, MC_VENDING, USESKILL_FAIL_LEVEL, 0);
+		return 0;
+	}
+	if (nameid <= 0 || nameid >= (MAX_ITEMDB)) {
+		clif->skill_fail(sd, MC_VENDING, USESKILL_FAIL_LEVEL, 0);
+		return 0;
+	}
+	if ((item = itemdb->exists(nameid)) == NULL) {
+		clif->skill_fail(sd, MC_VENDING, USESKILL_FAIL_LEVEL, 0);
+		return 0;
+	}
+
+	sd->vend_loot = nameid;
+	sd->state.prevend = 1;
+	clif->openvendingreq(sd, 2 + sd->vend_lvl);
+	sprintf(output, msg_txt(1594), item->jname);
+	clif->vendmessage(sd,output,VEND_COLOR);
+
+	return 0;
+}
+
 /*==========================================
  *
  *------------------------------------------*/
@@ -18725,4 +18786,5 @@ void skill_defaults(void) {
 	skill->cooldown_save = skill_cooldown_save;
 	skill->get_new_group_id = skill_get_new_group_id;
 	skill->check_shadowform = skill_check_shadowform;
+	skill->vending = skill_vending;
 }

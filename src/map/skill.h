@@ -2044,6 +2044,7 @@ struct skill_interface {
 	void (*cooldown_save) (struct map_session_data * sd);
 	int (*get_new_group_id) (void);
 	bool (*check_shadowform) (struct block_list *bl, int64 damage, int hit);
+	int (*vending) (struct map_session_data *sd, unsigned short nameid);
 };
 
 struct skill_interface *skill;

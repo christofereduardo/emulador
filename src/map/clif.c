@@ -5573,6 +5573,24 @@ void clif_displaymessage_sprintf(const int fd, const char* mes, ...) {
 		WFIFOSET(fd, 5 + len);
 	}
 }
+void clif_displaymessagecolor(struct map_session_data *sd, const char* msg, unsigned long color)
+{
+	int fd;
+	unsigned short len = strlen(msg) + 1;
+	
+	nullcheckvoid(sd);
+	
+	color = (color & 0x0000FF) << 16 | (color & 0x00FF00) | (color & 0xFF0000) >> 16; // RGB to BGR
+	
+	fd = sd->fd;
+	WFIFOHEAD(fd, len+12);
+	WFIFOW(fd,0) = 0x2C1;
+	WFIFOW(fd,2) = len+12;
+	WFIFOL(fd,4) = 0;
+	WFIFOL(fd,8) = color;
+	safestrncpy((char*)WFIFOP(fd,12), msg, len);
+	WFIFOSET(fd, len + 12);
+}
 /// Send broadcast message in yellow or blue without font formatting (ZC_BROADCAST).
 /// 009a <packet len>.W <message>.?B
 void clif_broadcast(struct block_list* bl, const char* mes, size_t len, int type, enum send_target target)
@@ -9112,7 +9130,7 @@ void clif_parse_WantToConnection(int fd, struct map_session_data* sd) {
 
 	session[fd]->session_data = sd;
 
-	pc->setnewpc(sd, account_id, char_id, login_id1, client_tick, sex, fd);
+	pc->setnewpc(sd, account_id, char_id, login_id1, client_tick, sex, fd, 0);
 
 #if PACKETVER < 20070521
 	WFIFOHEAD(fd,4);
@@ -11685,6 +11703,9 @@ void clif_parse_SelectArrow(int fd,struct map_session_data *sd)
 		case NC_MAGICDECOY:
 			skill->magicdecoy(sd,RFIFOW(fd,2));
 			break;
+		case MC_VENDING:
+			skill->vending(sd,RFIFOW(fd,2));
+			break;
 	}
 
 	clif_menuskill_clear(sd);
@@ -12768,10 +12789,18 @@ void clif_parse_PurchaseReq2(int fd, struct map_session_data* sd)
 ///     0 = canceled
 ///     1 = open
 void clif_parse_OpenVending(int fd, struct map_session_data* sd) {
+	struct item_data *item = itemdb->exists(sd->vend_loot);
 	short len = (short)RFIFOW(fd,2) - 85;
 	const char* message = (char*)RFIFOP(fd,4);
 	bool flag = (bool)RFIFOB(fd,84);
 	const uint8* data = (uint8*)RFIFOP(fd,85);
+	
+	char out_msg[1024];
+
+	if (battle_config.extended_vending && battle_config.show_item_vending && sd->vend_loot) {
+		memset(out_msg, '\0', sizeof(out_msg));
+		strcat(strcat(strcat(strcat(out_msg, "["), item->jname), "] "), message);
+	}
 
 	if( !flag )
 		sd->state.prevend = sd->state.workinprogress = 0;
@@ -12790,7 +12819,11 @@ void clif_parse_OpenVending(int fd, struct map_session_data* sd) {
 	if( message[0] == '\0' ) // invalid input
 		return;
 
-	vending->open(sd, message, data, len/8);
+	//vending->open(sd, message, data, len/8, NULL);
+	if (battle_config.extended_vending && battle_config.show_item_vending && sd->vend_loot)
+		vending->open(sd, out_msg, data, len / 8);
+	else
+		vending->open(sd, message, data, len / 8);
 }
 
 /// Guild creation request (CZ_REQ_MAKE_GUILD).
@@ -18185,6 +18218,50 @@ void clif_parse_debug(int fd,struct map_session_data *sd) {
 }
 
 
+// Extended Vending system [Lilith]
+
+int clif_vend(struct map_session_data *sd, int skill_lv) {
+
+	struct item_data *item;
+	int c, i, d = 0;
+	int fd;
+
+	nullcheck(sd);
+
+	fd = sd->fd;
+	WFIFOHEAD(fd, 8 * 8 + 8);
+	WFIFOW(fd, 0) = 0x1ad;
+	if (battle_config.item_zeny) {
+		WFIFOW(fd, d * 2 + 4) = ITEMID_ZENY;
+		d++;
+
+	}
+	if (battle_config.item_cash) {
+		WFIFOW(fd, d * 2 + 4) = ITEMID_CASH;
+		d++;
+	}
+	for (c = d, i = 0; i < ARRAYLENGTH(item_vend); i++) {
+		if ((item = itemdb->exists(item_vend[i].itemid)) != NULL &&
+			item->nameid != ITEMID_ZENY && item->nameid != ITEMID_CASH) {
+			WFIFOW(fd, c * 2 + 4) = item->nameid;
+			c++;
+
+		}
+	}
+	if (c > 0) {
+		sd->menuskill_id = MC_VENDING;
+		sd->menuskill_val = skill_lv;
+		WFIFOW(fd, 2) = c * 2 + 4;
+		WFIFOSET(fd, WFIFOW(fd, 2));
+	}
+	else {
+		clif_skill_fail(sd, MC_VENDING, USESKILL_FAIL_LEVEL, 0);
+		return 0;
+	}
+
+	return 1;
+}
+
 /*==========================================
  * Main client packet processing function
  *------------------------------------------*/
@@ -19153,4 +19230,7 @@ void clif_defaults(void) {
 	/* NPC Market */
 	clif->pNPCMarketClosed = clif_parse_NPCMarketClosed;
 	clif->pNPCMarketPurchase = clif_parse_NPCMarketPurchase;
+	/* extended vending */
+	clif->vendmessage = clif_displaymessagecolor;
+	clif->vend = clif_vend;
 }

@@ -513,6 +513,11 @@ struct item_package {
 	unsigned short must_qty;
 };
 
+struct s_item_vend {
+	unsigned short itemid;
+};
+struct s_item_vend item_vend[MAX_INVENTORY];
+
 #define itemdb_name(n)        (itemdb->search(n)->name)
 #define itemdb_jname(n)       (itemdb->search(n)->jname)
 #define itemdb_type(n)        (itemdb->search(n)->type)
@@ -552,6 +557,8 @@ struct item_package {
 #define itemdb_canguildstore(item, gmlv)          (itemdb->isrestricted((item), (gmlv), 0, itemdb->canguildstore_sub))
 #define itemdb_canmail(item, gmlv)                (itemdb->isrestricted((item), (gmlv), 0, itemdb->canmail_sub))
 #define itemdb_canauction(item, gmlv)             (itemdb->isrestricted((item), (gmlv), 0, itemdb->canauction_sub))
+#define ITEMID_ZENY battle_config.item_zeny
+#define ITEMID_CASH battle_config.item_cash
 
 struct itemdb_interface {
 	void (*init) (void);
