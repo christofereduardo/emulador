@@ -1,0 +1,64 @@
+-	script	countpointsmvp	-1,{
+OnNPCKillEvent:
+setarray .@monsterID[0],1312,1251,1159,2022,1492,1252,1583,1751,1768,1734,1871,1120,1582,1096,1147,1647,1651,1644,1642,1646,1643,1916,1785,1112,1373,1046; // ID Dos Boss
+for(set @a,0; @a <= getarraysize(.@monsterID); set @a,@a+1)
+if(killedrid == .@monsterID[@a])
+{
+  set mvp_points,mvp_points+10;
+  dispbottom "Parabéns "+strcharinfo(0)+", você acaba de ganhar mais um ponto de mvp kill! Agora você possui "+mvp_points+" pontos.";
+  end;
+}
+}
+//===============================
+//======== Loja MvP==============
+//========by:  Hold =============
+//===============================
+prontera,147,211,4	script	Trocador de MVP Points#1	61,{
+ 
+        // Estrutura da loja:
+        // ID,preço, Id,preço, ID,preço...;
+        setarray .items[0],5451,10,5452,5000,5453,3000,5518,5000,2256,5000;
+       
+        set .npcname$, "[ ^cf7500Trocador de MVP Points^000000 ]";
+       
+        mes .npcname$;
+        mes "Olá ^0000FF"+strcharinfo (0)+"^000000, eu posso trocar seus MVP Points por items especiais. O catálogo de items é o seguinte.";
+        next;
+        switch (select ("- Espírito do Dragão de Ouro:- Espírito do Dragão de Prata:- Espírito do Dragão de Bronze:- Chifres Místicos de Bafóme:- Chifres Majestosos Gigantescos")) {
+                case 1: set @buying, 0; set @qt, 1; break;
+                case 2: set @buying, 2; set @qt, 1; break;
+                case 3: set @buying, 4; set @qt, 1; break;
+                case 4: set @buying, 6; set @qt, 1; break;
+                case 5: set @buying, 8; set @qt, 1; break;
+        }
+        set @prize, .items[@buying+1];
+        mes .npcname$;
+        mes "Você escolheu comprar o item ^FF0000"+getitemname (.items[@buying])+"^000000, irá lhe custar ^FF0000"+@prize+"^000000 MVP Points.";
+        mes "Deseja prosseguir?";
+        next;
+        if (select ("- Sim, claro!:- Não, muito caro.") == 2) {
+                mes .npcname$;
+                mes "Está bem, volte quando quiser negociar seus MVP Points.";
+                close;
+        } else {
+                if (mvp_points < @prize) { //Verificação da quantidade de MVP Points
+                        mes .npcname$;
+                        mes "Você não possui MVP Points suficientes.";
+                        close;
+                }
+                if (checkweight(.items[@buying],@qt) == 0) { //Verificação de peso
+                        mes .npcname$;
+                        mes "Você está muito pesado para receber o item, por favor livre-se de um pouco de seu peso.";
+                        close;
+                }
+                getitem .items[@buying],@qt;
+                set mvp_points, mvp_points - @prize;
+                mes .npcname$;
+                mes "Aqui está seu item, muito obrigado por utilizar nosso serviço de trocas.";
+                dispbottom "Você gastou "+@prize+" MVP Points, lhe restam "+mvp_points+" MVP Points.";
+                close;
+        }
+OnInit:
+waitingroom "MVP Points",0;
+end;
+}

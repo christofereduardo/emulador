@@ -10754,3 +10754,63 @@ Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
 
 Ponteiro nulo. Data/Hora: Sat Aug  5 10:17:19 2017 
 Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:47:51 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:47:55 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:47:59 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:03 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:07 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:11 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:15 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:19 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:23 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:27 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:31 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:35 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:39 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:43 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:47 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:51 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 11 12:48:55 2017 
+Arquivo: status.c | Linha: 3624 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Sat Aug 12 19:56:48 2017 
+Arquivo: clif.c | Linha: 15680 | Proc: clif_parse_ViewPlayerEquip
+
+Ponteiro nulo. Data/Hora: Sat Aug 12 19:56:58 2017 
+Arquivo: clif.c | Linha: 15680 | Proc: clif_parse_ViewPlayerEquip
+
+Ponteiro nulo. Data/Hora: Sat Aug 12 20:03:48 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
