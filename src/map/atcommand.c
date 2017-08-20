@@ -898,7 +898,7 @@ ACMD(item)
 		}
 	}
 
-	if( !strcmpi(info->command,"costumeitem") )
+	if(!strcasecmp(info->command,"costumeitem"))
 	{
 		if( !battle_config.reserved_costume_id )
 		{
