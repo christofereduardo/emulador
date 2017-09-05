@@ -17,20 +17,18 @@ prontera,147,211,4	script	Trocador de MVP Points#1	61,{
  
         // Estrutura da loja:
         // ID,preço, Id,preço, ID,preço...;
-        setarray .items[0],5451,10,5452,5000,5453,3000,5518,5000,2256,5000;
+        setarray .items[0],5453,500,5518,800,14232,50;
        
         set .npcname$, "[ ^cf7500Trocador de MVP Points^000000 ]";
        
         mes .npcname$;
         mes "Olá ^0000FF"+strcharinfo (0)+"^000000, eu posso trocar seus MVP Points por items especiais. O catálogo de items é o seguinte.";
         next;
-        switch (select ("- Espírito do Dragão de Ouro:- Espírito do Dragão de Prata:- Espírito do Dragão de Bronze:- Chifres Místicos de Bafóme:- Chifres Majestosos Gigantescos")) {
+        switch (select ("- Espírito do Dragão de Bronze:- Chifres Místicos de Bafóme:- Caixa de Frutos de Yggdrasil 10")) {
                 case 1: set @buying, 0; set @qt, 1; break;
                 case 2: set @buying, 2; set @qt, 1; break;
                 case 3: set @buying, 4; set @qt, 1; break;
-                case 4: set @buying, 6; set @qt, 1; break;
-                case 5: set @buying, 8; set @qt, 1; break;
-        }
+                }
         set @prize, .items[@buying+1];
         mes .npcname$;
         mes "Você escolheu comprar o item ^FF0000"+getitemname (.items[@buying])+"^000000, irá lhe custar ^FF0000"+@prize+"^000000 MVP Points.";

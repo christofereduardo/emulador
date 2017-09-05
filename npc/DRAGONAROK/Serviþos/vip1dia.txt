@@ -1,0 +1,43 @@
+prontera,158,174,5	script	Fada da VIP	4_F_FAIRY,{
+
+set .minlvl, 1;
+set .vipdays, 1;
+set .cash, 3000;
+set .npc$,"^FF0000[Dias VIP Gratis]^000000";
+
+if (#FreeVIP == 1){
+	mes .npc$;
+	mes "Você ja recebeu 1 dia VIP Gratis.";
+	mes "Até logo.";
+	close;
+}
+
+if (BaseLevel < .minlvl){
+	mes .npc$;
+	mes "Desculpe, para usar meus serviços você precisa ser level "+.minlvl+" ou mais.";
+	mes "Me procure quando preencher os requisitos.";
+	close;
+}
+
+mes .npc$;
+mes "Olá, bem vindo ao Dragonarok.";
+next;
+mes .npc$;
+mes "Gostaria de ganhar "+.vipdays+" dias de conta VIP grátis?";
+if(select("Sim:Não")==2) close;
+query_sql "UPDATE `login` SET `group_id` = '1', `diasvip` = '"+.vipdays+"' WHERE `account_id` = '"+getcharid(3)+"'";
+next;
+mes .npc$;
+mes "Parabéns, você ganhou "+.vipdays+" dias Premmy.";
+mes "Você será deslogado do servidor para ser efetivado!";
+set #FreeVIP,1;
+next;
+atcommand "@kick "+strcharinfo(0);
+end;
+	
+OnInit:
+waitingroom "1 dia vip",0;
+end;
+	
+}
+

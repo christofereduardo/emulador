@@ -1,0 +1,12 @@
+prontera,159,214,5	script	Nosde	1_M_JOBTESTER,{
+
+mes "[ROPS]";
+mes "Ops, parece que ocorreu algum erro. Por favor, saia desta cidade e venha falar comigo novamente para que eu abra a loja para você.";
+close;
+
+OnInit:
+waitingroom "Rops TOPO",0;
+end;
+}
+
+prontera,159,214,5	cashshop	ROPS [Topo]	1_M_JOBTESTER,5423:35000,5137:15000,5490:20000,5376:15000,5564:20000,5420:15000,5481:20000,5293:25000,5658:15000,5379:10000,5529:20000,5372:15000,5388:20000

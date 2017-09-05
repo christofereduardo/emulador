@@ -1,0 +1,12 @@
+prontera,164,211,5	script	Claudiaum	1_M_03,{
+
+mes "[ROPS]";
+mes "Ops, parece que ocorreu algum erro. Por favor, saia desta cidade e venha falar comigo novamente para que eu abra a loja para você.";
+close;
+
+OnInit:
+waitingroom "Rops MEIO",0;
+end;
+}
+
+prontera,164,211,5	cashshop	ROPS [Meio]	1_M_03,5325:8000,5421:5000,5358:7000,2202:7000,2204:5000,5401:6000,5402:8000,5800:9000,5288:6000,5592:8000

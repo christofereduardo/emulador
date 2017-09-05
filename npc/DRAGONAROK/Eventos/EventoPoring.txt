@@ -25,7 +25,7 @@ prontera,139,224,5	script	Evento Poring	4_M_JPN,{
 				mes "[ Evento Poring ]";
 				mes "São invocados 100 Porings.";
 				mes "Só UM é verdadeiro, e você tem que achá-lo.";
-				mes "Caso consiga, ganhará um item.";
+				mes "Caso consiga, ganhará Cinco Moedas de Bronze.";
 				mes "Boa Sorte.";
 				close;
 		}
@@ -50,36 +50,35 @@ prontera,139,224,5	script	Evento Poring	4_M_JPN,{
 			end;
 	}
 	
+		OnClock0100: callsub OnEventStart;
+		OnClock0330: callsub OnEventStart;
+		OnClock0500: callsub OnEventStart;
 		OnClock0800: callsub OnEventStart;
 		OnClock1000: callsub OnEventStart;
-		OnClock1400: callsub OnEventStart;
+		Onclock1400: callsub OnEventStart;
 		OnClock1702: callsub OnEventStart;
-		OnClock1905: callsub OnEventStart;
-		Onclock2100: callsub OnEventStart;
-		OnClock0100: callsub OnEventStart;
-		Onclock0330: callsub OnEventStart;
-		OnClock0500: callsub OnEventStart;
+		Onclock1905: callsub OnEventStart;
+		OnClock2100: callsub OnEventStart;
 		
 		
 		OnEventStart:
 			announce "[ Evento Poring ]: Gente, é hora do evento. Falem comigo para entrar.",0;
 			initnpctimer;
-			monster "poring_w02",81,82,"Poring",1002,1,strnpcinfo(0)+"::OnMobKilled";
-			monster "poring_w02",116,82,"Poring",1002,1,strnpcinfo(0)+"::OnMobKilled";
-			monster "poring_w02",81,82,"Pouring",1002,10,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",116,82,"Proing",1002,10,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",81,82,"Poirng",1002,10,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",116,82,"Poing",1002,15,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",81,82,"Porimg",1002,15,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",116,82,"Porinq",1002,4,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",81,82,"Porinn",1113,5,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",116,82,"P4ring",1062,6,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",81,82,"Por|ng",1002,15,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",116,82,"Por1ng",1002,15,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",81,82,"Porong",1002,15,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",116,82,"P0ring",1002,15,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",81,82,"P@ring",1002,15,strnpcinfo(0)+"::OnWrongKilled";
-			monster "poring_w02",116,82,"Porng",1002,8,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"Poring",1002,1,strnpcinfo(0)+"::OnMobKilled";
+			monster "poring_w02",0,0,"Pouring",1002,10,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"Proing",1002,10,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"Poirng",1002,10,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"Poing",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"Porimg",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"Porinq",1002,4,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"Porinn",1113,5,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"P4ring",1062,6,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"Por|ng",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"Por1ng",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"Porong",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"P0ring",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"P@ring",1002,15,strnpcinfo(0)+"::OnWrongKilled";
+			monster "poring_w02",0,0,"Porng",1002,8,strnpcinfo(0)+"::OnWrongKilled";
 			set .poringcatch,1;
 			end;
 			return;
@@ -95,11 +94,11 @@ prontera,139,224,5	script	Evento Poring	4_M_JPN,{
 		OnMobKilled:
 			stopnpctimer;
 			announce "[ Evento Poring ]: "+strcharinfo(0)+" encontrou o Poring. Tente denovo na próxima vez.",0;
-			dispbottom "Parabéns, você encontrou o Poring verdadeiro.";
+			dispbottom "Parabéns, você encontrou o Poring verdadeiro. Pegue aqui suas moedas de evento.";
 			getitem $ipe,$qpe;
 			killmonsterall "poring_w02";
 			set .poringcatch,0;
-			getitem 12208,1;
+			getitem 673,5;
 			switch(select("Sair do evento:Ficar no mapa"))
 			{
 			case 1:

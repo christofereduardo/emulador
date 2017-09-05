@@ -109,8 +109,8 @@ OnPCKillEvent:
 	}
 	attachrid killedrid;
 	if ( killerrid != getcharid(3) && ( .msg_die || .msg_kill ) ) {
-		if ( .msg_die ) message strcharinfo(0),"You have been killed by "+ rid2name(killerrid);
-		if ( .msg_kill ) message rid2name(killerrid),"You just killed "+ strcharinfo(0);
+		if ( .msg_die ) message strcharinfo(0),"Você foi morto por "+ rid2name(killerrid);
+		if ( .msg_kill ) message rid2name(killerrid),"Parabéns, você matou "+ strcharinfo(0);
 	}
 	if ( @PlayersKilledStreak >= .holyshit )
 		set .@streakname$,"Beyond Godlike";
@@ -133,7 +133,7 @@ OnPCKillEvent:
 	else if ( @PlayersKilledStreak >= .killingspree )
 		announce rid2name(killerrid) +" has ended "+ strcharinfo(0) +"'s "+ .@streakname$ +"["+ @PlayersKilledStreak +"] streak "+( (.announcemap)?("at "+ .@map$):""),16|.announce;
 	else if ( .announcekill && killerrid != getcharid(3) )
-		announce rid2name(killerrid) +" has pawned "+ strcharinfo(0) +"'s head "+( (.announcemap)?("at "+ .@map$):""),16|.announce;
+		announce rid2name(killerrid) +" derrotou "+ strcharinfo(0) +" na arena PvP "+( (.announcemap)?("no mapa "+ .@map$):""),16|.announce;
 	set @PlayersKilledStreak,0;
 	set @dota_sql_deaths, @dota_sql_deaths +1;
 	set @dota_multikills,0;
@@ -198,11 +198,11 @@ OnPCKillEvent:
 	}
 	query_sql "replace into pvpladder values ( "+ getcharid(0) +", '"+ escape_sql(strcharinfo(0)) +"', "+ @dota_sql_streaks +", "+ @dota_sql_kills +", "+ @dota_sql_deaths +", from_unixtime("+ @dota_sql_streaktime +") )";
 	if ( @PlayersKilledStreak == .killingspree )
-		setarray .@streakname$,"killingspree.wav","is on a KILLING SPREE","!";
+		setarray .@streakname$,"killingspree.wav","está MATANDO MUITO!","!";
 	else if ( @PlayersKilledStreak == .dominating )
-		setarray .@streakname$,"dominating.wav","is DOMINATING","!";
+		setarray .@streakname$,"dominating.wav","está DOMINANDO!","!";
 	else if ( @PlayersKilledStreak == .megakill )
-		setarray .@streakname$,"megakill.wav","has a MEGA KILL","!";
+		setarray .@streakname$,"megakill.wav","está MATANDO TODOS!!","!";
 	else if ( @PlayersKilledStreak == .unstoppable )
 		setarray .@streakname$,"unstoppable.wav","is UNSTOPPABLE","!!";
 	else if ( @PlayersKilledStreak == .wickedsick )
@@ -235,8 +235,8 @@ OnPCKillEvent:
 	set .@origin, getcharid(3);
 	sleep 1500;
 	if ( .@killer_gid && .@killer_gid != .@killed_gid && getd(".dota_sql_"+ .@killer_gid +"_c") >= .owned && ( ( getd(".dota_sql_"+ .@killer_gid +"_c") - .owned ) % .owncontinue == 0 ) ) {
-		if ( .announce ) mapannounce .@map$, "The guild ["+ getguildname(.@killer_gid) +"] is OWNING["+ getd(".dota_sql_"+ .@killer_gid +"_c") +"] !!!",16;
-		else announce "The guild ["+ getguildname(.@killer_gid) +"] is OWNING["+ getd(".dota_sql_"+ .@killer_gid +"_c") +"] !!!",16;
+		if ( .announce ) mapannounce .@map$, "O clã ["+ getguildname(.@killer_gid) +"] está Dominando["+ getd(".dota_sql_"+ .@killer_gid +"_c") +"] !!!",16;
+		else announce "O Clã ["+ getguildname(.@killer_gid) +"] está Dominando["+ getd(".dota_sql_"+ .@killer_gid +"_c") +"] !!!",16;
 		if ( .sound == 1 ) soundeffectall "ownage.wav",0,.@map$;
 		else if ( .sound == 2 ) soundeffectall "ownage.wav",0;
 		else if ( .sound == 3 && attachrid(.@origin) ) soundeffect "ownage.wav",0;
@@ -244,7 +244,7 @@ OnPCKillEvent:
 	sleep 1250;
 	if ( !attachrid(.@origin) ) end;
 	if ( .@dota_multikills == 2 ) {
-		if ( .announce ) mapannounce .@map$, strcharinfo(0) +" just got a Double Kill !",16;
+		if ( .announce ) mapannounce .@map$, strcharinfo(0) +" matou duas vezes !",16;
 		else announce strcharinfo(0) +" just got a Double Kill !",16;
 		if ( .sound == 1 ) soundeffectall "doublekill.wav",0,.@map$;
 		else if ( .sound == 2 ) soundeffectall "doublekill.wav",0;
@@ -283,14 +283,14 @@ OnWhisperGlobal:
 		query_sql "select kills, deaths, streaks, unix_timestamp(streaktime) from pvpladder where char_id = "+ getcharid(0), @dota_sql_kills, @dota_sql_deaths, @dota_sql_streaks, @dota_sql_streaktime;
 	if ( @dota_sql_kills || @dota_sql_deaths ) {
 		dispbottom "Your current Streak      : "+ @PlayersKilledStreak;
-		dispbottom "Your total Kills               : "+ @dota_sql_kills;
-		dispbottom "Your total Deaths          : "+ @dota_sql_deaths;
-		dispbottom "Your highest Streak      : "+ @dota_sql_streaks;
+		dispbottom "Suas votórias totais               : "+ @dota_sql_kills;
+		dispbottom "Suas mortes totais          : "+ @dota_sql_deaths;
+		dispbottom "Sua maior Patente      : "+ @dota_sql_streaks;
 		query_sql "select date_format( from_unixtime("+ @dota_sql_streaktime +"),'%a %e/%c/%y %r')", .@time1$;
 		dispbottom "Your highest Streak on : "+ .@time1$;
 	}
 	else
-		dispbottom "You are not in the pvp ladder yet.";
+		dispbottom "Você não está na liderança da PvP ainda.";
 	if ( getcharid(2) ) {
 		if ( getd(".dota_sql_"+ getcharid(2) +"_h") == 0 ) {
 			query_sql "select currentown, highestown, unix_timestamp(owntime) from ownladder where guild_id = "+ getcharid(2), .@c, .@h, .@t;
@@ -330,19 +330,19 @@ OnPCLoadMapEvent:
 	end;
 }
 
-prontera,166,188,5	script	PvP-StatsViewer	1_M_LIBRARYMASTER,{
+prontera,168,228,4	script	PvP-StatsViewer	1_M_LIBRARYMASTER,{
 	set .@npcname$, strnpcinfo(0);
 	while (1) {
 		mes "["+ .@npcname$ +"]";
-		mes "Hello "+ strcharinfo(0) +"...";
-		mes "If you want to I can show you your PVP stats.";
+		mes "Olá "+ strcharinfo(0) +"...";
+		mes "Se você quiser, eu posso te mostrar os seus Status na PvP.";
 		next;
-		switch ( select ( "Most Kills","Highest Streak","Longest Ownage","Own Information","Explanation" ) ) {
+		switch ( select ( "- Top Vitórias e Derrotas","- Maior Patentização alcançada","- Clã Dominante","- Informações Pessoais","- Explanation" ) ) {
 			case 1:
 				set .@nb, query_sql("select name, kills, deaths from pvpladder order by kills desc limit "+ getvariableofnpc(.showtotal,"DOTAPVP"), .@name$, .@kills, .@deaths);
 				if ( .@nb == 0 ) {
 					mes "["+ .@npcname$ +"]";
-					mes "The ladder currently is empty.";
+					mes "Não há líderes definidos ainda.";
 					next;
 				}
 				for ( set .@j,0; .@j < .@nb; set .@j, .@j + getvariableofnpc(.showpage,"DOTAPVP") ) {
@@ -357,7 +357,7 @@ prontera,166,188,5	script	PvP-StatsViewer	1_M_LIBRARYMASTER,{
 				set .@nb, query_sql("select name, streaks, date_format(streaktime,'%a %e/%c/%y %r') from pvpladder where streaks >= "+ getvariableofnpc(.loweststreak,"DOTAPVP") +" order by streaks desc limit "+ getvariableofnpc(.showtotal,"DOTAPVP"), .@name$, .@streak, .@time$);
 				if ( .@nb == 0 ) {
 					mes "["+ .@npcname$ +"]";
-					mes "The ladder currently is empty.";
+					mes "Não há líderes definidos ainda.";
 					next;
 				}
 				for ( set .@j,0; .@j < .@nb; set .@j, .@j + getvariableofnpc(.showpage,"DOTAPVP") ) {
@@ -373,7 +373,7 @@ prontera,166,188,5	script	PvP-StatsViewer	1_M_LIBRARYMASTER,{
 				set .@nb, query_sql("select name, highestown, date_format(owntime,'%a %e/%c/%y %r') from ownladder where highestown >= "+ getvariableofnpc(.lowestownage,"DOTAPVP") +" order by highestown desc limit "+ getvariableofnpc(.showtotal,"DOTAPVP"), .@name$, .@owned, .@time$);
 				if ( .@nb == 0 ) {
 					mes "["+ .@npcname$ +"]";
-					mes "The ladder currently is empty.";
+					mes "Não há líderes definidos ainda.";
 					next;
 				}
 				for ( set .@j,0; .@j < .@nb; set .@j, .@j + getvariableofnpc(.showpage,"DOTAPVP") ) {
@@ -453,8 +453,8 @@ prontera,166,188,5	script	PvP-StatsViewer	1_M_LIBRARYMASTER,{
 				mes "--------------------------------";
 				mes " ";
 				mes "The numbers of straight kills to get these announcements are :";
-				mes "^70AC11"+ getvariableofnpc(.killingspree,"DOTAPVP") +"^000000 : Killing Spree";
-				mes "^70AC11"+ getvariableofnpc(.dominating,"DOTAPVP") +"^000000 : Dominating";
+				mes "^70AC11"+ getvariableofnpc(.killingspree,"DOTAPVP") +"^000000 : Esse aí mata em!";
+				mes "^70AC11"+ getvariableofnpc(.dominating,"DOTAPVP") +"^000000 : Dominando a área!";
 				mes "^70AC11"+ getvariableofnpc(.megakill,"DOTAPVP") +"^000000 : Mega Kill";
 				mes "^70AC11"+ getvariableofnpc(.unstoppable,"DOTAPVP") +"^000000 : Unstoppable";
 				mes "^70AC11"+ getvariableofnpc(.wickedsick,"DOTAPVP") +"^000000 : Wicked Sick";
@@ -508,4 +508,7 @@ prontera,166,188,5	script	PvP-StatsViewer	1_M_LIBRARYMASTER,{
 				break;
 		}
 	}
+	OnInit:
+		waitingroom "PvP Ranking",0;
+		end;
 }

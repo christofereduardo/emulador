@@ -6,7 +6,7 @@
 prontera.gat,165,195,3	script	Anúncio	-1,{
 
 OnClock0900:
-announce "No Dragonarok não existem sistemas de VIP ou semelhantes. Todos são iguais.",8;
+announce "Ajude o servidor fazendo sua doação e adquira sua conta VIP de 30 dias.",8;
 end;
 OnClock1000:
 announce "Curta a nossa página no Facebook. Procure por Dragonarok Ragnarok Online.",8;
@@ -15,19 +15,19 @@ OnClock1100:
 announce "O Foco do Dragonarok é te tornar mais e mais forte, porém, busque sua força.",8;
 end;
 OnClock1200:
-announce "Sofreu algum tipo de preconceito? Desrespeito? Assédio moral? Denuncie com uma ScreenShot no grupo do servidor.",8;
+announce "Sofreu algum tipo de preconceito? Desrespeito? Assédio moral? Denuncie com uma ScreenShot no Fórum do servidor.",8;
 end;
 OnClock1300:
-announce "Participe sempre dos eventos de caça aos MVP's, as recompensas são ótimas.",8;
+announce "Participe sempre dos eventos de caça aos MVP's, cada MVP morto te darão 10 pontos, que acumulados podem ser trocados por itens.",8;
 end;
 OnClock1400:
-announce "Todo aquela que fecha o Ranking PvP em primeiro lugar, poderá receber prêmios gratificantes da nossa Staff.",8;
+announce "Todo aquele que fecha o Ranking PvP em primeiro lugar, será entrevistado pela Staff e participará do nosso video em nosso canal do YouTube.",8;
 end;
 OnClock1500:
 announce "Recomendamos que não compartilhe sua conta com ninguém, pois qualquer item perdido não será reposto. Não nos responsabilizamos.",8;
 end;
 OnClock1600:
-announce "Troque seu dinheiro por Cash Coins, e compre itens sem a necessidade de ficar farmando.",8;
+announce "O Dragonarok tem três tipos de moedas de troca. Zeny, Cash e Emblemas. Não tem um? Pague com o outro.",8;
 end;
 OnClock1700:
 announce "A função de CM do Dragonarok visa apenas em anotar Pedidos, Reclamações, Sugestões e Reports. Este não possui NENHUM comando especial. O Mesmo tem permissão de ser um Player comum como todos. ",8;

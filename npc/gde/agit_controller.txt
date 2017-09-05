@@ -32,16 +32,15 @@
 -	script	Agit_Event	-1,{
 	end;
 
-OnClock2100:	// horário de iniciar Terça(2), Quinta(4)
-OnClock2300:	// horário de encerrar Terça(2), Quinta(4)
-OnClock1600:	// horário de iniciar Sabado(6)
-OnClock1800:	// horário de encerrar Sabado(6)
+OnClock2200:	// horário de iniciar Sábado(6)
+OnClock2300:	// horário de encerrar Sábago(6)
+OnClock2100:	// horário de iniciar Domingo(0)
+OnClock2200:	// horário de encerrar Domingo(0)
 
 OnAgitInit:
 	// verificação de tempo de iniciar
-	if((gettime(4)==2) && (gettime(3)>=21 && gettime(3)<23) ||
-	   (gettime(4)==4) && (gettime(3)>=21 && gettime(3)<23) ||
-	   (gettime(4)==6) && (gettime(3)>=16 && gettime(3)<18)) {
+	if((gettime(4)==6) && (gettime(3)>=22 && gettime(3)<23) ||
+	   (gettime(4)==0) && (gettime(3)>=21 && gettime(3)<22)) {
 		if (!agitcheck()) {
 			agitstart;
 			callsub S_DisplayOwners;
@@ -50,9 +49,8 @@ OnAgitInit:
 	}
 
 	// verificação de tempo de encerramento
-	if ((gettime(4)==2) && (gettime(3)==23) ||
-	    (gettime(4)==4) && (gettime(3)==23) ||
-	    (gettime(4)==6) && (gettime(3)==18)) {
+	if ((gettime(4)==6) && (gettime(3)==23) ||
+	    (gettime(4)==0) && (gettime(3)==22)) {
 		if (agitcheck()) {
 			agitend;
 			callsub S_DisplayOwners;

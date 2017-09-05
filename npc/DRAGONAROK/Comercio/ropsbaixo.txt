@@ -1,0 +1,12 @@
+prontera,166,206,5	script	Marciaum	1_M_03,{
+
+mes "[ROPS]";
+mes "Ops, parece que ocorreu algum erro. Por favor, saia desta cidade e venha falar comigo novamente para que eu abra a loja para você.";
+close;
+
+OnInit:
+waitingroom "Rops BAIXO",0;
+end;
+}
+
+prontera,166,206,5	cashshop	ROPS [Baixo]	1_M_03,5361:9000,5206:5000,5594:5000,5532:9000,5574:8000,5445:2000,5463:5000,5846:8000

@@ -1,0 +1,32 @@
+-	script	ControleVIP	-1,{
+
+OnPCLoginEvent:
+
+	
+// ************ [ CONFIGURAÇÕES ] ************ 
+
+// [01] - Tabela do VIP (Default: diasvip)
+set @tabela$,"diasvip";
+// [02] - Level do VIP
+set @levelvip,1;
+// [03] - Site do Servidor
+set @site$,"www.Ragnavine.com.br";
+
+// ************ [ FIM CONFIGURAÇÕES ] ************ 
+
+mes "[^FF0000RagnaVine^000000]";
+query_sql "SELECT `"+@tabela$+"` FROM `login` WHERE `account_id` = "+getcharid(3)+"",@diasvip;
+if(@diasvip > 0) mes "^0000FFVocê possui ("+@diasvip+") dias Vip restantes!^000000";
+else mes "^FF0000Você não possui dias VIP^000000!";
+mes "Ajude nosso servidor votando no Top-Ragnarok ^FF0000["+@site$+"]^000000";
+if (getgmlevel() > 20 && getgmlevel() < 99) mes "Seja bem vindo GM.";
+if (getgmlevel() == 99) mes "Seja Bem vindo ADM.";
+close;
+}
+
+-	script	Sistema remosver vip	-1,{
+
+OnClock1201: query_sql "UPDATE `login` SET `diasvip`=`diasvip`-1 WHERE `group_id`='1'"; end;
+OnClock1202: query_sql "UPDATE `login` SET `group_id`='0' WHERE `diasvip`<='0' AND `group_id`='1'"; end;
+end;
+}

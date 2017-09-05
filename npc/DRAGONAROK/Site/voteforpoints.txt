@@ -92,13 +92,13 @@ end;
 	function updatePoints {
 		set .@account_id,getarg(0);
 		set .@usedPoints,getarg(1);
-		query_sql("UPDATE `cp_v4p_voters` SET points=(points-"+.@usedPoints+") WHERE account_id='"+.@account_id+"'");
+		query_sql("UPDATE `cp_votes` SET credits=(credits-"+.@usedPoints+") WHERE account_id='"+.@account_id+"'");
 		return;
 	}
 
 	function getPoints {
 		set .@account_id,getarg(0);
-		query_sql("SELECT `points` FROM `cp_v4p_voters` WHERE account_id="+.@account_id+" LIMIT 1",.@points);
+		query_sql("SELECT `credits` FROM `cp_votes` WHERE account_id="+.@account_id+" LIMIT 1",.@points);
 		if(getarraysize(.@points)==0)
 			return 0;		
 		return .@points[0];
