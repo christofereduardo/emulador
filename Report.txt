@@ -10814,3 +10814,252 @@ Arquivo: clif.c | Linha: 15680 | Proc: clif_parse_ViewPlayerEquip
 
 Ponteiro nulo. Data/Hora: Sat Aug 12 20:03:48 2017 
 Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:46:52 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:46:55 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:46:57 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:46:59 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:47:08 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:47:10 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:47:17 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:47:19 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:47:41 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:47:43 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:47:44 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:47:46 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:47:49 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:47:51 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:47:59 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:48:01 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:48:09 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:48:11 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:48:35 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:48:37 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:48:40 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 20:48:42 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Fri Aug 25 21:05:06 2017 
+Arquivo: unit.c | Linha: 365 | Proc: unit_delay_walktoxy_timer
+
+Ponteiro nulo. Data/Hora: Sat Aug 26 21:20:23 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Sat Aug 26 21:20:49 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Sat Aug 26 21:21:23 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Sat Aug 26 21:22:24 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Sat Aug 26 21:22:56 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Sat Aug 26 21:23:19 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Sat Aug 26 21:23:30 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Sat Aug 26 21:23:32 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 11:52:09 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:16:52 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:16:54 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:16:57 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:16:59 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:17:16 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:17:18 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:17:19 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:17:21 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:17:38 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:17:39 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:17:40 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:17:41 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:17:44 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:17:46 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:17:54 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 20:17:56 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:00:42 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:10:37 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:10:42 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:10:56 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:11:05 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:16:52 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:16:54 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:16:57 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:16:59 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:17:07 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:17:09 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:17:17 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:17:19 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:17:40 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:17:42 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:17:43 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:17:45 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:17:48 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:17:50 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:17:58 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:18:00 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:18:08 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:18:10 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:18:34 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Tue Aug 29 21:18:36 2017 
+Arquivo: status.c | Linha: 3626 | Proc: status_calc_bl_main
+
+Ponteiro nulo. Data/Hora: Wed Aug 30 12:28:53 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Sep  5 15:25:30 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Sep  5 15:34:32 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Sep  5 15:43:53 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Sep  5 15:45:11 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Sep  5 15:45:12 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Sep  5 15:45:13 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Sep  5 15:45:17 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Sep  5 15:45:19 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub
+
+Ponteiro nulo. Data/Hora: Tue Sep  5 15:46:31 2017 
+Arquivo: unit.c | Linha: 1862 | Proc: unit_attack_timer_sub

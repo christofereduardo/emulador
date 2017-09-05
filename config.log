@@ -858,7 +858,7 @@ configure:5979: checking for xlocale.h
 configure:5979: result: yes
 configure:6142: checking for library containing inflateEnd
 configure:6173: cc -o conftest -g -O2 -pipe -ffast-math -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-clobbered -Wempty-body -Wno-switch -Wno-missing-field-initializers -fno-strict-aliasing  -DMAXCONN=16384 -I../common -DHAS_TLS -DHAVE_SETRLIMIT -DHAVE_STRNLEN -I/usr/include  -L/usr/lib conftest.c  >&5
-/tmp/ccYd9z3X.o: In function `main':
+/tmp/ccaE2lEX.o: In function `main':
 /home/rlcpe4wm/emulador/conftest.c:39: undefined reference to `inflateEnd'
 collect2: ld returned 1 exit status
 configure:6173: $? = 1
@@ -921,7 +921,7 @@ configure:6200: result: yes
 configure:6211: checking for library containing sqrt
 configure:6242: cc -o conftest -g -O2 -pipe -ffast-math -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-clobbered -Wempty-body -Wno-switch -Wno-missing-field-initializers -fno-strict-aliasing  -DMAXCONN=16384 -I../common -DHAS_TLS -DHAVE_SETRLIMIT -DHAVE_STRNLEN -I/usr/include  -L/usr/lib conftest.c -lz  >&5
 conftest.c:35: warning: conflicting types for built-in function 'sqrt'
-/tmp/ccmFoNIn.o: In function `main':
+/tmp/ccbc9ITZ.o: In function `main':
 /home/rlcpe4wm/emulador/conftest.c:39: undefined reference to `sqrt'
 collect2: ld returned 1 exit status
 configure:6242: $? = 1
@@ -974,7 +974,7 @@ configure:6242: $? = 0
 configure:6259: result: -lm
 configure:6274: checking for library containing clock_gettime
 configure:6305: cc -o conftest -g -O2 -pipe -ffast-math -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-clobbered -Wempty-body -Wno-switch -Wno-missing-field-initializers -fno-strict-aliasing  -DMAXCONN=16384 -I../common -DHAS_TLS -DHAVE_SETRLIMIT -DHAVE_STRNLEN -I/usr/include  -L/usr/lib conftest.c -lm -lz  >&5
-/tmp/ccZbnQNt.o: In function `main':
+/tmp/ccGQYCN5.o: In function `main':
 /home/rlcpe4wm/emulador/conftest.c:39: undefined reference to `clock_gettime'
 collect2: ld returned 1 exit status
 configure:6305: $? = 1

@@ -1,0 +1,84 @@
+prontera,131,217,5	script	Conversão	4_M_HUMERCHANT,{
+
+mes "[Conversor]";
+mes "Olá, sou o responsável pela conversão de suas Moedas de Bronze, Prata e Ouro.";
+next;
+mes "[Conversor]";
+mes "Se você tiver uma determinada quantidade de Moedas, posso convertê-la para 1 unidade de outra determinada Moeda";
+next;
+mes "[Conversor]";
+mes "• 10x Moedas de Bronze para 1x Moeda de Prata.";
+mes "";
+mes "• 10x Moedas de Prata para 1x Moeda de Ouro.";
+next;
+mes "[Conversor]";
+mes "Você gostaria de fazer alguma conversão?";
+next;
+switch (select("Sim:Nao"))
+{
+	case 1:
+	mes "[Conversor]";
+	mes "Selecione qual moeda você deseja converter:";
+	next;
+	switch (select("Moeda de Prata:Moeda de Ouro"))
+	{
+		case 1:
+		if(countitem(673) >= 10)
+			
+		mes "[Conversor]";
+		mes "Deseja Prosseguir com a conversão?";
+		next;
+		switch (select("Sim:Nao"))
+		{
+			case 1:
+			
+			delitem 673,10;
+			getitem 675,1;
+			mes "[Conversor]";
+			mes "Aqui está, e obrigado.";
+			close;
+			
+			case 2:
+			mes "[Conversor]";
+			mes "Okay, faremos em outro momento.";
+			close;
+		}
+		mes "[Conversor]";
+		mes "Você não tem moedas suficientes para o serviço, volte quando as tiver.";
+		close;
+		
+		case 2:
+		if(countitem(675) >= 10)
+		
+		mes "[Conversor]";
+		mes "Deseja Prosseguir com a conversão?";
+		switch (select("Sim:Nao"))
+		{
+			case 1:
+			
+			delitem 675,10;
+			getitem 671,1;
+			mes "[Conversor]";
+			mes "Aqui está, e obrigado.";
+			close;
+						
+			case 2:
+			mes "[Conversor]";
+			mes "Okay, faremos em outro momento.";
+			close;
+		}
+		mes "[Conversor]";
+		mes "Você não tem moedas suficientes para o serviço, volte quando as tiver.";
+		close;
+		
+		
+	}
+	case 2:
+		mes "[Conversor]";
+		mes "Como quiser. Estarei por aqui caso precise.";
+		close;
+}
+OnInit:
+waitingroom "Moedas",0;
+end;
+}

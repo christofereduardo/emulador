@@ -1,0 +1,179 @@
+prontera,181,215,4	script	Homem das Cartas	1_M_MERCHANT,{
+
+if(countitem(671) >= 1)
+{
+UPGRADEROOT:
+	mes "[Removedor de Cartas]";
+	mes "Olá! Você gostaria de remover alguma carta de algum equipamento?";
+	next;
+	menu "Claro.",REMOVEMENU,
+	     "O que você quer em troca?",REMOVEPRICE,
+	     "Não, até mais.",CLOSEOUT;
+
+REMOVEPRICE:
+	mes "[Removedor de Cartas]";
+	mes "Isso não vai lhe custar absolutamente NADA.";
+	next;
+	menu "Tudo bem, vamos em frente.",REMOVEMENU,
+	     "Não, obrigado.",CLOSEOUT;
+
+REMOVEMENU:
+	mes "[Removedor de Cartas]";
+	mes "Muito bem, que item você quer que eu olhe?";
+	next;
+	menu "Nenhum, mudei de idéia.",CLOSEOUT,
+	     getequipname(1),SLOT1,
+	     getequipname(2),SLOT2,
+	     getequipname(3),SLOT3,
+	     getequipname(4),SLOT4,
+	     getequipname(5),SLOT5,
+	     getequipname(6),SLOT6,
+	     getequipname(7),SLOT7,
+	     getequipname(8),SLOT8,
+	     getequipname(9),SLOT9,
+	     getequipname(10),SLOT10;
+
+SLOT1:
+	set @part,1;
+	goto CARDNUMCHECK;
+
+SLOT2:
+	set @part,2;
+	goto CARDNUMCHECK;
+
+SLOT3:
+	set @part,3;
+	goto CARDNUMCHECK;
+
+SLOT4:
+	set @part,4;
+	goto CARDNUMCHECK;
+
+SLOT5:
+	set @part,5;
+	goto CARDNUMCHECK;
+
+SLOT6:
+	set @part,6;
+	goto CARDNUMCHECK;
+
+SLOT7:
+	set @part,7;
+	goto CARDNUMCHECK;
+
+SLOT8:
+	set @part,8;
+	goto CARDNUMCHECK;
+
+SLOT9:
+	set @part,9;
+	goto CARDNUMCHECK;
+
+SLOT10:
+	set @part,10;
+	goto CARDNUMCHECK;
+
+CARDNUMCHECK:
+	if(getequipcardcnt(@part) == 0) goto DENYCARDCOUNT;
+	set @cardcount,getequipcardcnt(@part);
+	if(@cardcount > 1) goto CARDNUMMULTIMSG;
+	mes "[Removedor de Cartas]";
+	mes "Este item tem " + @cardcount + " carta(s).";
+	goto CARDNUMPOSTMSG;
+CARDNUMMULTIMSG:
+	mes "[Removedor de Cartas]";
+	mes "Este item tem " + @cardcount + " carta(s).";
+CARDNUMPOSTMSG:
+	next;
+	menu "Ok, faça-o.",REMOVECARDWARNING,
+	     "Deixa pra lá.",CLOSEOUT;
+
+REMOVECARDWARNING:
+	mes "[Removedor de Cartas]";
+	mes "Antes de começar, há chance de perder ou o item ou a carta, qual é o mais importante?";
+	next;
+	menu "Mudei de idéia...",CLOSEOUT,
+	     "O Item.",PRIORITYITEM,
+	     "As cartas.",PRIORITYCARD;
+
+PRIORITYITEM:
+	set @failtype,1;
+	goto REMOVECARD;
+
+PRIORITYCARD:
+	set @failtype,2;
+	goto REMOVECARD;
+
+REMOVECARD:
+	mes "[Removedor de Cartas]";
+	mes "Muito bem, vamos começar.";
+// Replace the constants in the next 3 lines with failure chance values defined in refine_db.txt
+// First value = Total failure chance (item and cards destroyed)
+// Second value = Partial failure chance (one or the other is destroyed, player decides which one is safe)
+// Third value = Harmless failure chance (all that's lost is your investment)
+
+	set @failchance,rand(100);
+//	if(@failchance < 0) goto FAILREMOVECARD0;
+//	if((@failchance < 0) && (@failtype == 1)) goto FAILREMOVECARD1;
+//	if((@failchance < 0) && (@failtype == 2)) goto FAILREMOVECARD2;
+	if(@failchance < 0) goto FAILREMOVECARD3;
+	successremovecards @part;
+	next;
+	delitem 671,1;
+	mes "[Removedor de Cartas]";
+	mes "A operação foi um sucesso, até mais.";
+	close;
+
+FAILREMOVECARD0:
+	failedremovecards @part,0;
+	next;
+	mes "[Removedor de Cartas]";
+	mes "The process was a total failure. I am afraid the item and the cards were destroyed.";
+	close;
+
+FAILREMOVECARD1:
+	failedremovecards @part,1;
+	next;
+	mes "[Removedor de Cartas]";
+	mes "While I have managed to remove the cards from the item, they were destroyed in the process. The item, however, is okay.";
+	close;
+
+FAILREMOVECARD2:
+	failedremovecards @part,2;
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Most unfortunate. I succeeded at removing the cards, but the item itself was destroyed in the process.";
+	close;
+
+FAILREMOVECARD3:
+	failedremovecards @part,3;
+	next;
+	mes "[Removedor de Cartas]";
+	mes "I have failed to remove the cards. Luckily, however, both the item and the cards are still okay.";
+	close;
+
+DENYCARDCOUNT:
+	mes "[Removedor de Cartas]";
+	mes "Não há nenhuma carta para ser retirada!";
+	close;
+
+DENYMATERIAL:
+	next;
+	mes "[Removedor de Cartas]";
+	mes "You do not have all the items I require to work my magic, child. Come again when you do.";
+	close;
+
+CLOSEOUT:
+	mes "[Removedor de Cartas]";
+	mes "Tudo bem, volte quando precisar.";
+	close;
+
+OnInit:
+		waitingroom "Remoção de Cartas",0;
+		end;
+}
+mes "[Removedora]";
+	mes "Desculpe, só trabalho para quem me trouxer Moedas de Ouro.";
+	mes "Caso deseje um serviço gratuito, adquira sua conta VIP.";
+	close;
+}

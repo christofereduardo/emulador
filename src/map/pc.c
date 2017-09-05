@@ -5966,9 +5966,8 @@ int pc_checkjoblevelup(struct map_session_data *sd)
 	clif->updatestatus(sd,SP_SKILLPOINT);
 	status_calc_pc(sd,SCO_FORCE);
 	clif->misceffect(&sd->bl,1);
-	if (pc->checkskill(sd, SG_DEVIL) && !pc->nextjobexp(sd))
-		clif->status_change(&sd->bl,SI_DEVIL1, 1, 0, 0, 0, 1); //Permanent blind effect from SG_DEVIL.
-
+	if ( pc -> checkskill ( sd , SG_DEVIL ) && ! pc -> nextjobexp ( sd ))
+		clif -> status_change (& sd -> bl , SI_DEVIL1 , 1 , 0 , 0 , 0 , 1 ); //Permanent blind effect from SG_DEVIL.
 	npc->script_event(sd, NPCE_JOBLVUP);
 	return 1;
 }

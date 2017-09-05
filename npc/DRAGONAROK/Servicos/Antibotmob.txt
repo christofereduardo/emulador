@@ -1,0 +1,43 @@
+-	script	AntiBoT	-1,{
+ 
+OnNPCKillEvent:
+set pontos,pontos +1;
+if(pontos == 120) callsub OnPCLoginEvent;
+end;
+ 
+OnPCLoginEvent:
+//===============//=======================
+set pontos,0;
+set .@npc$ , "^FF0000 Sistema Anti-Bot  ^000000"; // nome do npc
+set @numerais,rand(0,1000000);
+set @rand,rand(50,300);
+atcommand "@hide";
+//if(getgmlevel() >= 99) { end; }    // se quizer que gm ou adm não passe pelo sistema tire o //
+//============//==========================
+		mes .@npc$;
+		mes "^0000FFVamos verificar se você não é um bot?^000000";
+		mes "Digite os valores que vou lhe passar a seguir...";
+		next;
+		mes .@npc$;
+		mes "^800080Digite o valor caso errar sera kikado.^000000 ";
+		mes "Digite o valor a baixo";
+		mes "Este é o valor - ^800080 "+ @numerais +"  ^000000";
+		input @valor;
+
+			if (@valor ==  @numerais){
+		next;
+		mes .@npc$;
+		mes "Tudo certo, tenha um bom jogo";
+		set @ok,1;
+		set pontos,0;
+		atcommand "@hide";
+		close;
+	}
+ 
+			else {
+		mes .@npc$;
+		mes "^FF0000 O valor digitado está errado  ^000000";
+		close2;
+		atcommand "@kick "+ strcharinfo(0) +"";
+	}
+}

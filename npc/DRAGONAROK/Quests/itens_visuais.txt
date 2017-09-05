@@ -9,6 +9,9 @@
 =============================================================*/
 
 -	script	Costume Conversor	-1,{
+
+if(countitem(671) >= 1)
+{
 	mes "[Conversor]";
 	mes "Aqui você pode converter seus equipamentos em visuais ou restaurar a sua forma original.";
 	switch(select("Quero converter:Quero restaurar.:Nada, obrigado.")) {
@@ -79,6 +82,7 @@
 				close;
 			}
 			costume .@Part; // Converte o equipamento
+			delitem 671,1;
 			mes "[Conversor]";
 			mes "^0000FFConcluído^000000, aproveite seu equipamento visual.";
 			close;
@@ -116,8 +120,9 @@
 			a = getequipid(.@Part);			
 			delitem a,1;
 			getitem a,1;
-			
+						
 			mes "[Conversor]";
+			delitem 671,1;
 			mes "^0000FFConcluído^000000, aproveite seu equipamento de cabeça restaurado.";
 			close;
 	case 3:
@@ -126,8 +131,15 @@
 		mes "Muito bem. Retorne quando precisar dos meus serviços.";
 		close;
 	}
+OnInit:
+	waitingroom "Visuais",0;
+	end;
+}
+	mes "[Conversor]";
+	mes "Desculpe, só trabalho para quem me trouxer moedas de ouro.";
+	close;
 }
 // ---------------------------------------------------------------------------------
 // Use duplicatas para colocar o seu NPC em diferentes cidades                     |
 // ---------------------------------------------------------------------------------
-prontera,155,181,4	duplicate(Costume Conversor)	Conversor#1	1_M_SMITH
+prontera,128,213,6	duplicate(Costume Conversor)	Conversor#1	1_M_SMITH

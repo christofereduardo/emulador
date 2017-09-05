@@ -23,9 +23,9 @@
 
 dew_in01,4,42,4	script	Resetadora	4_F_TELEPORTER,{
 
-	set .@ResetStat,5000;	// Zeny requeridos para resetar atributos.
-	set .@ResetSkill,5000;	// Zeny requeridos para resetar habilidades.
-	set .@ResetBoth,9000;	// Zeny requeridos para resetar ambos.
+	set .@ResetStat,50;	// Zeny requeridos para resetar atributos.
+	set .@ResetSkill,50;	// Zeny requeridos para resetar habilidades.
+	set .@ResetBoth,90;	// Zeny requeridos para resetar ambos.
 
 	mes "[Resetadora]";
 	mes "Olá "+strcharinfo(0)+", eu sou ^FF3355Izadora^000000, a Resetadora.";

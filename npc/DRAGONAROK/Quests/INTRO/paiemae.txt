@@ -1,4 +1,4 @@
-new_1-1,65,150,6	script	Papai	1_M_HOF,,{
+new_1-1,65,150,6	script	Papai	1_M_HOF,{
 
 mes "[Papai]";
 mes ""+strcharinfo(0)+", m"+ (Sex?"eu":"inha") +" filh"+ (Sex?"o":"a") +", estou muito feliz que tenha decidido treinar para ser um guerreiro defensor de nossa Rune Midgard.";

@@ -27,8 +27,8 @@ guild_vs5	mapflag	loadevent
 OnInit:
 // Config
 	set .sound, 0; // soundeffect : 0 - disable, 1 - play soundeffect to all players on map, 2 - play soundeffect to an area around the killer, 3 - play soundeffect to killer only
-	set .announce, 1; // announce to : 0 - global, 1 - map
-	set .announcemap, 1; // announce the map name in the announcement ? : 0 - off, 1 - on
+	set .announce, 0; // announce to : 0 - global, 1 - map
+	set .announcemap, 0; // announce the map name in the announcement ? : 0 - off, 1 - on
 
 	set .announcekill, 1; // announce who pawn who's head : 0 - off, 1 - on
 	set .msg_die, 1; // show message who kill you when die : 0 - off, 1 - on
@@ -330,7 +330,7 @@ OnPCLoadMapEvent:
 	end;
 }
 
-prontera,168,228,4	script	PvP-StatsViewer	1_M_LIBRARYMASTER,{
+prontera,169,227,4	script	PvP-StatsViewer	1_M_LIBRARYMASTER,{
 	set .@npcname$, strnpcinfo(0);
 	while (1) {
 		mes "["+ .@npcname$ +"]";

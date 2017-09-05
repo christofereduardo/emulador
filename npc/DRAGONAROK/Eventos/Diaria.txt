@@ -256,13 +256,13 @@ end;
  
 OnInit:
 waitingroom "Missões de Caça",0;
-set .Delay,0; // Quest delay, in hours (0 to disable).
-set .Quests,4; // Number of subquests per quest (increases rewards).
-set .Multiplier,850; // Multiplier for Zeny reward calculation.
+set .Delay,25; // Quest delay, in hours (0 to disable).
+set .Quests,6; // Number of subquests per quest (increases rewards).
+set .Multiplier,200; // Multiplier for Zeny reward calculation.
 setarray .Count[0], // Min and max monsters per subquest (increases rewards).
-40,70;
+40,120;
 setarray .Shop[0], // Reward items: <ID>,<point cost> (about 10~20 points per hunt).
-7087,1,6152,1,7470,1,538,5,539,5,558,10,561,10;
+673,20,6152,1,7470,1,538,5,539,5,558,10,561,10;
 setarray .Restrict$[0], // Blacklisted mob IDs.
    "1003,1006,1017,1021,1022,1027,1043,1062,1075,1096,"+
    "1108,1120,1136,1137,1168,1171,1172,1173,1198,1200,"+

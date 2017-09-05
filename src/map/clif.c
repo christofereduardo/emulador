@@ -9469,8 +9469,8 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd) {
 	if(map->list[sd->bl.m].flag.loadevent) // Lance
 		npc->script_event(sd, NPCE_LOADMAP);
 
-	if (pc->checkskill(sd, SG_DEVIL) && !pc->nextjobexp(sd)) //blindness [Komurka]
-		clif->sc_end(&sd->bl, sd->bl.id, SELF, SI_DEVIL1);
+	if ( pc -> checkskill ( sd , SG_DEVIL ) && ! pc -> nextjobexp ( sd )) //blindness [Komurka]
+		clif-> sc_end (& sd-> bl, sd-> bl.id, SELF, SI_DEVIL1);
 
 	if (sd->sc.opt2) //Client loses these on warp.
 		clif->changeoption(&sd->bl);
